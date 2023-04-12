@@ -33,7 +33,7 @@ namespace RehabAid.Fun
 
             // Configure SendGrid client
             
-            var client = new SendGridClient("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");
+            var client = new SendGridClient("");
 
             // Compose email message
             var from = new EmailAddress("amugari@wcyber.net", "Abel Mugari");
