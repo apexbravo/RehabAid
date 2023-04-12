@@ -1,0 +1,61 @@
+﻿@page
+@model RehabAid.Web.Areas.Facilities.Pages.MedicineLogs.AddModel
+@{
+}
+@section breadcrumb{
+    <a class="breadcrumb-item" asp-page="/Index">Medicine Log</a>
+    <a class="breadcrumb-item" asp-page=".">Add</a>
+}
+
+
+<form method="post" enctype="multipart/form-data">
+    <div class="col-md-7 col-ldg-8">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group">
+                        <label>Patient</label>
+                        <select class="form-select" asp-for="MedicineLog.PatientId" asp-items="Model.Patients"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Name <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" asp-for="MedicineLog.Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Prescription  <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" asp-for="MedicineLog.PrescriptionLabel">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date Issued</label>
+                        <input class="form-control" type="text" asp-for="MedicineLog.DateIssued">
+                    </div>
+
+
+
+
+
+                    @*<div class="form-group">
+            <label>Specialty</label>
+            <select class="form-select" asp-for="Specialist.SpecialtyId" asp-items="Model.Specialty"></select>
+        </div>*@
+
+
+
+
+
+
+
+                    @*<div class=" form-group row">
+            <label class="col-sm-4">Profile Picture</label>
+            <input class="form-control" asp-for="logo" type="file" accept="*" />
+        </div>*@
+                </div>
+            </div>
+            <div class="card-footer text-end">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Submit</button>
+            </div>
+        </div>
+    </div>
+</form>

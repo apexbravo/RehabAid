@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="2.2.0" />
+    <PackageReference Include="MimeMapping" Version="1.0.1.50" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.18" />
+    <PackageReference Include="ScottPlot" Version="4.1.62" />
+    <PackageReference Include="wCyber.Helpers.Web" Version="6.0.8" />
+    <PackageReference Include="wCyber.Lib.FileStorage" Version="1.0.4" />
+  </ItemGroup>
+
+</Project>

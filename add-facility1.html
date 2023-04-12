@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Addiction Rehabilitation Assistance">
+        <meta name="keywords" content="rehabilitation assistance, addiction assistance">
+        <meta name="author" content="Abigail T Chekure">
+
+        <link rel="stylesheet" href="css\style.css">
+        <link rel="stylesheet" href="bootstrap\css\bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap\js\bootstrap.min.js">
+        <link rel="stylesheet" href="font-awesome-4.7.0\css\font-awesome.min.css">
+
+        <title> Admin | Add Facility</title>
+        
+    </head>
+    <body id="admin-home">
+       
+       
+
+        <div class="side-menu">
+            <div id="brand-name">
+                <h1><span class="highlight-1">Rehab</span><span class="highlight-2">Aid</span>
+                </h1>
+            </div>
+           
+            <ul>
+               
+               <!-- <li><img src="images/dashboard.png" alt="">&nbsp; Dashboard</li>
+                <li><img src="images/patients.png" alt="">&nbsp; Patients</li>
+                <li><img src="images/staff.png" alt="">&nbsp; Staff</li>
+                <li><img src="images/hospital.png" alt="">&nbsp; Hospitals</li>
+                <li><img src="images/help.png" alt="">&nbsp; Help</li>
+                <li><img src="images/settings.png" alt="">&nbsp; Settings</li> -->
+                <li><i class="fa fa-newspaper-o"></i>&nbsp;<a style="text-decoration: none; color:rgb(37, 44, 44)" href="admin-dashboard.html">Dashboard</a></li>
+                <li><i class="fa fa-hospital-o"></i>&nbsp; <a style="text-decoration: none; color:rgb(37, 44, 44)" href="facilities.html">  Facilities</a></li>
+                <li><i class="fa fa-user-md"></i>&nbsp;<a style="text-decoration: none; color:rgb(37, 44, 44)" href="doctors.html">  Doctors</a></li>
+                <li><i class="fa fa-group"></i>&nbsp;<a style="text-decoration: none; color:rgb(37, 44, 44)" href="staff.html">Staff</a></li>
+                <li><i class="fa fa-question-circle"></i>&nbsp;Help</li>
+                <li><i class="fa fa-gear"></i>&nbsp;Settings</li>
+            </ul>
+        </div>
+        
+        
+
+        <header >      
+                        <div class="nav-1">
+                            <div class="search">
+                            <input type="text" placeholder="Search">
+                            <button type="submit"><img src="images/search.jpg" alt=""></button>
+                        
+                        </div> 
+                        <div class="action"> 
+                            <div class="profile" onclick="menuToggle();">
+                                <img src="images/profile.jpg" alt="">
+                            </div> 
+                            <div class="menu">
+                                <h3>RehabAid </h3>
+                                    <h2>Admin</h2>
+                                <ul>
+                                   <li><i class="fa fa-user">&nbsp;</i><a href="#">My Profile</a></li>
+                                    <li><i class="fa fa-edit">&nbsp;</i><a href="#">Edit Profile</a></li>
+                                    <li><i class="fa fa-envelope-o"> &nbsp;</i><a href="#">Inbox&nbsp;&nbsp;</a></li>
+                                    <li><i class="fa fa-gear">&nbsp;</i><a href="#">Settings</a></li>
+                                    <li><i class="fa fa-question-circle">&nbsp;</i><a href="#">Help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                                    <li><i class="fa fa-power-off">&nbsp;</i><a href="#">Logout</a></li>
+                                    
+                                </ul>
+                            </div>
+
+                        </div>
+                        <script>
+                            function menuToggle(){
+                                const toggleMenu=document.querySelector('.menu');
+                                toggleMenu.classList.toggle('active');
+                            }
+                        </script>
+            </div>    
+               
+        </header>
+        
+        <div class="page-wrapper">
+            <div class="content">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <h4 class="page-title">Add Treatment Facility</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <form>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Name <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text">
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Email <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="email">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input class="form-control" type="password">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Confirm Password</label>
+                                        <input class="form-control" type="password">
+                                    </div>
+                                </div>
+                               
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <input type="text" class="form-control ">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-3">
+                                            <div class="form-group">
+                                                <label>Country</label>
+                                                <select class="form-control select">
+                                                    <option>USA</option>
+                                                    <option>United Kingdom</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-3">
+                                            <div class="form-group">
+                                                <label>City</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-3">
+                                            <div class="form-group">
+                                                <label>State/Province</label>
+                                                <select class="form-control select">
+                                                    <option>California</option>
+                                                    <option>Alaska</option>
+                                                    <option>Alabama</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6 col-lg-3">
+                                            <div class="form-group">
+                                                <label>Postal Code</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Phone </label>
+                                        <input class="form-control" type="text">
+                                    </div>
+                                </div>
+                                <br>
+                            <div class="m-t-20 text-center">
+                                <button class="btn btn-primary submit-btn">Create Doctor</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+					
+     </body>
+     
+     <footer>
+         <p>RehabAid Copyright &copy;2023 </p>
+     </footer>
+
+
+

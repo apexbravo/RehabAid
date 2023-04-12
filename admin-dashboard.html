@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Addiction Rehabilitation Assistance">
+        <meta name="keywords" content="rehabilitation assistance, addiction assistance">
+        <meta name="author" content="Abigail T Chekure">      
+        <link rel="stylesheet" href="bootstrap\css\bootstrap.min.css">
+        <link rel="stylesheet" href="font-awesome-4.7.0\css\font-awesome.min.css">
+        <link rel="stylesheet" href="css\style.css">
+        <title> Admin | Dashboard</title>
+        
+    </head>
+    <body id="admin-home">       
+        <div class="side-menu">
+            <div id="brand-name">
+                <h1><span class="highlight-1">Rehab</span><span class="highlight-2">Aid</span>
+                </h1>
+            </div>
+           
+            <ul class="side-list">
+               
+               <!-- <li><img src="images/dashboard.png" alt="">&nbsp; Dashboard</li>
+                <li><img src="images/patients.png" alt="">&nbsp; Patients</li>
+                <li><img src="images/staff.png" alt="">&nbsp; Staff</li>
+                <li><img src="images/hospital.png" alt="">&nbsp; Hospitals</li>
+                <li><img src="images/help.png" alt="">&nbsp; Help</li>
+                <li><img src="images/settings.png" alt="">&nbsp; Settings</li> -->
+                <li><i class="fa fa-newspaper-o"></i>&nbsp;<a  href="admin-dashboard.html">Dashboard</a></li>
+                <li><i class="fa fa-hospital-o"></i>&nbsp; <a  href="facilities.html">  Facilities</a></li>
+                <li><i class="fa fa-user-md"></i>&nbsp;<a  href="doctors.html">  Doctors</a></li>
+                <li><i class="fa fa-group"></i>&nbsp;<a  href="staff.html">Staff</a></li>
+                <li><i class="fa fa-question-circle"></i>&nbsp;Help</li>
+                <li><i class="fa fa-gear"></i>&nbsp;Settings</li>
+            </ul>
+        </div>
+        
+        
+
+        <header >      
+                        <nav class="navbar navbar-expand-md navbar-light fixed-top shadow-sm mb-3">
+                            <div class="navbar-collapse collapse d-sm-inline-flex">
+                                <div class="navbar-nav ms-auto justify-content-between">
+                                    <div class="input-group">
+                                        <input class="form-control-sm" type="text" placeholder="Search">
+                                        <button type="submit"><span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span></button>
+                                    </div>
+                                
+                               
+                        <div class="action"> 
+                            <div class="profile" onclick="menuToggle();">
+                                <img src="images/profile.jpg" alt="">
+                            </div> 
+                            <div class="menu">
+                                <h3>RehabAid </h3>
+                                    <h2>Admin</h2>
+                                <ul>
+                                    <li><i class="fa fa-user">&nbsp;</i><a href="#">My Profile</a></li>
+                                    <li><i class="fa fa-edit">&nbsp;</i><a href="#">Edit Profile</a></li>
+                                    <li><i class="fa fa-envelope-o"> &nbsp;</i><a href="#">Inbox&nbsp;&nbsp;</a></li>
+                                    <li><i class="fa fa-gear">&nbsp;</i><a href="#">Settings</a></li>
+                                    <li><i class="fa fa-question-circle">&nbsp;</i><a href="#">Help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                                    <li><i class="fa fa-power-off">&nbsp;</i><a href="login.html">Logout</a></li>
+                                   <!-- <li><i class="fa fa-edit">&nbsp;<a href="#">Edit Profile</a></li>
+                                    <li><i class="fa fa-envelope-o">&nbsp;<a href="#">Inbox</a></li>
+                                    <li><i class="fa fa-gear">&nbsp;<a href="#">Settings</a></li>
+                                    <li><i class="fa fa-question-circle">&nbsp;<a href="#">Help</a></li>
+                                    <li><i class="fa fa-power-off">&nbsp;<a href="#">Logout</a></li> -->
+                                    
+                                </ul>
+                            </div>
+
+                        </div>
+                        <script>
+                            function menuToggle(){
+                                const toggleMenu=document.querySelector('.menu');
+                                toggleMenu.classList.toggle('active');
+                            }
+                        </script>
+                            </div> 
+                            </div>
+
+            </nav>    
+               
+        </header>
+            <div class="container-1">
+                <div class="content">
+
+                    <div class="row mb-3" id="cards">
+                        <div>
+                            <div class="dashboard-card">
+                                <div class="card-body">
+                                    <div class="card-row">
+                                        <div class="col">
+                
+                
+                                            <h6 class="dashboard-cardtitle">
+                                                Treatment Facilities
+                                            </h6>
+                                            <span class="dashboard-cardheading" id="memberscount">
+                34
+                                            </span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <span class="dashboard-icon text-muted "><i class="fa fa-hospital-o "></i></span>
+                
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                
+                        </div>
+                
+                        <div>
+                            <div class="dashboard-card">
+                                <div class="card-body">
+                                    <div class="card-row">
+                                        <div class="col">
+                                            <h6 class="dashboard-cardtitle">
+                                                Doctors
+                                            </h6>
+                                            <span class="dashboard-cardheading" id="claimscount">
+                                                12
+                                            </span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <span class="dashboard-icon"><i class="fa fa-user-md" style="color:dodgerblue"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                
+                
+                            <div class="dashboard-card">
+                                <div class="card-body">
+                                    <div class="card-row">
+                                        <div class="col">
+                                            <h6 class="dashboard-cardtitle">
+                                                Staff Members
+                                            </h6>
+                                            <span class="dashboard-cardheading" id="policiescount">
+                                                14
+                                            </span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <span class="dashboard-icon"><i class="fa fa-group" style="color:hotpink"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class=" col-md-8 ms-1">
+                            <div class="">
+                                <h3>Available Treatment Facilities</h3>
+                           
+                            </div>
+                        <div class="card">
+    
+                            <table class="table table-striped table-sm">
+                                
+                                    <tr>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                    <th>Type</th>
+                                    <th>Edit Details</th>
+                                    </tr>
+                                
+                                
+                            <tr>
+                                <td>Mandipa Hope</td>
+                                <td>5 Winslow, Khumalo</td> 
+                                <td>+263 71 477 5601</td>
+                                <td>mandipahope@gmail.com</td>
+                                <td>Private</td>
+                                <td><a href="#" class="btn">Edit</a></td>
+
+                            </tr>
+                            <tr>
+                                <td>Healing Rain Garden</td>
+                                <td>Vumba</td> 
+                                <td>+263 77 930 8145</td>
+                                <td>healingrain@gmail.com</td>
+                                <td>Private</td>
+                                <td><a href="#" class="btn">Edit</a></td>
+
+                            </tr>
+                            <tr>
+                                <td>Mandipa Hope</td>
+                                <td>5 Winslow, Khumalo</td> 
+                                <td>+263 71 477 5601</td>
+                                <td>mandipahope@gmail.com</td>
+                                <td>Private</td>
+                                <td><a href="#" class="btn">Edit</a></td>
+
+                            </tr>
+                            <tr>
+                                <td>Healing Rain Garden</td>
+                                <td>Vumba</td> 
+                                <td>+263 77 930 8145</td>
+                                <td>healingrain@gmail.com</td>
+                                <td>Private</td>
+                                <td><a href="#" class="btn">Edit</a></td>
+
+                            </tr>
+                            
+                            </table>
+                        </div> 
+                        </div>
+                        <div class="col-md-4">
+                            <div class="">
+                                <h3>New Doctors</h3>
+                              
+                            </div>
+                            <div class="card">
+
+                            </div>
+                     </div>
+                    
+                </div>
+               
+               
+            </div> 
+				
+			<script src="./bootstrap/js/bootstrap.js"></script>"		
+     </body>
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
+     <footer>
+         <p>RehabAid Copyright &copy;2023 </p>
+     </footer>

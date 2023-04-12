@@ -1,0 +1,103 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@if (User.IsSpecialist())
+{
+    <h3 class="mb-4">Hey there, @Model.CurrentUser.Name</h3>
+    <div class="row mb-3" id="cards">
+        <div>
+            <div class="dashboard-card">
+                <div class="card-body">
+                    <div class="card-row">
+                        <div class="col">
+
+
+                            <h6 class="dashboard-cardtitle">
+                                Patients
+                            </h6>
+                            <span class="dashboard-cardheading" id="memberscount">
+                                34
+                            </span>
+                        </div>
+                        <div class="col-auto">
+                            <span class="dashboard-icon text-muted "><i class="fa fa-hospital-o "></i></span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div>
+            <div class="dashboard-card">
+                <div class="card-body">
+                    <div class="card-row">
+                        <div class="col">
+                            <h6 class="dashboard-cardtitle">
+                                Reviews
+                            </h6>
+                            <span class="dashboard-cardheading" id="claimscount">
+                                12
+                            </span>
+                        </div>
+                        <div class="col-auto">
+                            <span class="dashboard-icon"><i class="fa fa-user-md" style="color:dodgerblue"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+
+
+            <div class="dashboard-card">
+                <div class="card-body">
+                    <div class="card-row">
+                        <div class="col">
+                            <h6 class="dashboard-cardtitle">
+                                Commentaries
+                            </h6>
+                            <span class="dashboard-cardheading" id="policiescount">
+                                14
+                            </span>
+                        </div>
+                        <div class="col-auto">
+                            <span class="dashboard-icon"><i class="fa fa-group" style="color:hotpink"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class=" col-md-8 ms-1">
+            <div class="">
+                <h3>Reviews Patients </h3>
+
+            </div>
+            <div class="card">
+
+                <table class="table table-striped table-sm">
+
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th>Type</th>
+                        <th>Edit Details</th>
+                    </tr>
+
+
+
+
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+}

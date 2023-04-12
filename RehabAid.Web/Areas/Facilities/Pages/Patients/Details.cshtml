@@ -1,0 +1,45 @@
+﻿@page
+@model RehabAid.Web.Areas.Facilities.Pages.Patients.Index1Model
+@{
+}
+@section breadcrumb{
+    <a class="breadcrumb-item" asp-page="/Patients/Index">Patients</a>
+    <a class="breadcrumb-item" asp-page=".">Details</a>
+}
+@using Humanizer
+
+@if (User.IsSpecialist() || User.IsSysUser())
+{
+    @section actionbar{
+        <a class="btn btn-sm btn-outline-secondary "  asp-route-id="@Model.Patient.Id" asp-route-specialistId="@User.GetPortalId()" asp-page="../Specialists/Review/Add"><i class="fa fa-plus"></i>Add Review</a>
+    }
+
+}
+<div class="col-12">
+    <div class="card" style="height:390px;">
+        <div class="profile-header card-img-top">
+            <div class="text-start p-4">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <img class="rounded-circle " src="~/images/company.png" style="width:200px;height:200px;object-fit:cover;" />
+                    </div>
+                </div>
+                <div class="user-profile row">
+                    <div class="col-sm-10">
+                        <h4 class="user">
+                            @(Model.Patient.FirstName + " " + Model.Patient.Surname)
+                            <span>&mdash; @Model.Patient.Facility.Type.Humanize(Humanizer.LetterCasing.Sentence)</span>
+                        </h4>
+
+                        <p class="text-muted user">@Model.Patient.EmergencyContact</p>
+                        <p class="user">@Model.Patient.Age</p>
+                        <p class="user">@Model.Patient.Address</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

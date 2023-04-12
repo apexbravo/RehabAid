@@ -1,0 +1,50 @@
+﻿@page
+@model RehabAid.Web.Areas.Facilities.Pages.Specialists.Review.IndexModel
+@{
+}
+@section breadcrumb{
+    <a class="breadcrumb-item" asp-page="Specialists/Index">Specialists </a>
+
+}
+@*
+      @if (User.IsSysUser())
+    {
+    }
+
+*@
+<div class="btn-toolbar float-end d-inline pb-3">
+    <a class="btn btn-sm btn-outline-secondary " asp-page="Add"><i class="fa fa-pluss"></i> Add new Specialist</a>
+</div>
+
+
+<h4 class="font-weight-light text-primary"><strong>@Model.List.TotalItemCount</strong> specialist@(Model.List.TotalItemCount == 1 ? "" : "s") @(Model.QueryString != null ? "" : "found")</h4>
+<table class="table table-striped table-hover table-sm">
+    <thead>
+        <tr>
+            <th scope="col">Specialist</th>
+            <th scope="col">Patient</th>
+            <th scope="col">Creation Date</th>
+            <th scope="col">Sentiment</th>
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.List)
+        {
+            <tr>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@item.Id">@item.Specialist.Fullname</a>
+                </td>
+                <td>@item.Patient.Fullname</td>
+                <td>@item.CreationDate</td>
+                <td>@item.Sentiment</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+
+    </tfoot>
+
+</table>

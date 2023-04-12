@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RehabAid.Web</title>
+    <meta name="description" content="Addiction Rehabilitation Assistance">
+    <meta name="keywords" content="rehabilitation assistance, addiction assistance">
+    <meta name="author" content="Abigail T Chekure">
+    <link rel="stylesheet" href="~/lib/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+</head>
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<body id="admin-home">
+    <div class="side-menu">
+        <div id="brand-name">
+            <h1>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">
+                    <span class="highlight-1">Rehab</span>
+                    <span class="highlight-2">Aid</span>
+                </a>
+            </h1>
+        </div>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            @if (User.IsPatient())
+            {
+
+            }
+            else if (User.IsStaff())
+            {
+
+            }
+            else if (User.IsSpecialist())
+            {
+                <partial name="Sidebar/__Specialist" />
+            }
+
+            else
+            {
+                <ul class="side-list">
+                    <li><i class="fa fa-newspaper-o"></i><span class="d-none d-sm-inline">&nbsp;Dashboard</span></li>
+                    <li><i class="fa fa-hospital-o"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/Index">Facilities</a></span></li>
+                    <li><i class="fa fa-group"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/Patients/Index">Patients</a></span></li>
+                    <li><i class="fa fa-group"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/Guardian/Index">Guardians</a></span></li>
+
+                    <li><i class="fa fa-user-md"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/Specialists/Index">Specialists</a></span></li>
+                    <li><i class="fa fa-user-md"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/Staffs/Index">Staff</a></span></li>
+                    <li><i class="fa fa-user-md"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/Reservations/Index">Reservations</a></span></li>
+                    <li><i class="fa fa-user-md"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/MedicineLogs/Index">Medicine</a></span></li>
+
+                    @*<li><i class="fa fa-user-md"></i><span class="d-none d-sm-inline">&nbsp;<a href="doctors.html">Specialists</a></span></li>*@
+
+                    <li><i class="fa fa-question-circle"></i><span class="d-none d-sm-inline">&nbsp;Help</span></li>
+                    <li><i class="fa fa-gear"></i><span class="d-none d-sm-inline">&nbsp;Settings</span></li>
+                </ul>
+            }
+
+        }
+
+    </div>
+
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light fixed-top shadow-sm mb-3">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                    <form class="d-flex ms-auto">
+                        <div class="input-group">
+                            <input class="form-control" type="search" placeholder="Search">
+                            <button class="btn btn-outline-primary" type="submit">
+                                <i class="fa fa-search"
+                                   aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <div class="action">
+                        <div class="profile" onclick="menuToggle();">
+                            <img src="~/images/profile.jpg" alt="">
+                        </div>
+                        <div class="menu">
+                            <h3>RehabAid </h3>
+                            <h2>Admin</h2>
+                            <ul>
+                                <li><i class="fa fa-user">&nbsp;</i><a href="#">My Profile</a></li>
+                                <li><i class="fa fa-edit">&nbsp;</i><a href="#">Edit Profile</a></li>
+                                <li><i class="fa fa-envelope-o"> &nbsp;</i><a href="#">Inbox&nbsp;&nbsp;</a></li>
+                                <li><i class="fa fa-gear">&nbsp;</i><a href="#">Settings</a></li>
+                                <li><i class="fa fa-question-circle">&nbsp;</i><a href="#">Help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                                <li><i class="fa fa-power-off">&nbsp;</i><a asp-area="Identity" asp-page="/Account/Login">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <script>
+                        function menuToggle() {
+                            const toggleMenu = document.querySelector('.menu');
+                            toggleMenu.classList.toggle('active');
+                        }
+                    </script>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-1 p-3">
+        <main role="main" class="content">
+            <div class="d-flex py-2">
+                <div class="flex-grow-1"><div class="breadcrumb small d-print-none" style="background: none !important">@RenderSection("breadcrumb", false)</div></div>
+                @if (IsSectionDefined("actionbar"))
+                {
+                    <div class="px-3 m-2" style="">@RenderSection("actionbar", required: false)</div>
+                }
+
+            </div>
+            @if (ViewBag.PageTitle != null)
+            {
+                <h3 class="mb-3 fs-titlepage">@ViewBag.PageTitle</h3>
+            }
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - RehabAid.Web - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+
+        $(document).ready(() => {
+            $(".rotate, .buttondetails").click(function () {
+                $(this).toggleClass("down");
+           
+            });
+
+            $('.moreless-button').click(function () {
+                $('.moretext').slideToggle();
+                if ($('.moreless-button').text() == "Read more") {
+                    $(this).text("Read less")
+                } else {
+                    $(this).text("Read more")
+                }
+            });
+        }
+        );
+
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

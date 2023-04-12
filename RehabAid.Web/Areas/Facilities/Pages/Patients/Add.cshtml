@@ -1,0 +1,68 @@
+﻿@page
+@model RehabAid.Web.Areas.Facilities.Pages.Patients.AddModel
+@{
+}
+@section breadcrumb{
+    <a class="breadcrumb-item" asp-page="/Index">Patients</a>
+    <a class="breadcrumb-item" asp-page=".">Add</a>
+}
+<form method="post" enctype="multipart/form-data">
+    <div class="col-md-7 col-ldg-8">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="row">
+
+
+                    <div class="form-group">
+                        <label>First Name <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" asp-for="Patient.FirstName">
+                    </div>
+                    <div class="form-group">
+                        <label>Surname <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" asp-for="Patient.Surname">
+                    </div>
+                    <div class="form-group">
+                        <label>Age <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" asp-for="Patient.Age">
+                    </div>
+                    <div class="form-group">
+                        <label>Gender</label>
+                        <select class="form-select" asp-for="Patient.GenderId" asp-items="Model.Gender"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Treatment Facility</label>
+                        <select class="form-select" asp-for="Patient.FacilityId" asp-items="Model.TreatmentFacilities"></select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Emergency Contact</label>
+                        <input class="form-control" type="text" asp-for="Patient.EmergencyContact">
+                    </div>
+
+
+
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type="text" class="form-control " asp-for="Patient.Address">
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+                </div>
+            </div>
+            <div class="card-footer text-end">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Submit</button>
+            </div>
+        </div>
+    </div>
+</form>

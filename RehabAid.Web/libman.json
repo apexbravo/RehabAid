@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "defaultProvider": "filesystem",
+  "libraries": [
+    {
+      "library": "wwwroot/bootstrap/",
+      "destination": "wwwroot/lib/bootstrap/"
+    }
+  ]
+}

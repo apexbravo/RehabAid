@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RehabAid.Web</title>
+    <meta name="description" content="Addiction Rehabilitation Assistance">
+    <meta name="keywords" content="rehabilitation assistance, addiction assistance">
+    <meta name="author" content="Abigail T Chekure">
+    <link rel="stylesheet" href="~/lib/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body id="admin-home">
+    <header>
+ 
+        <nav class="navbar navbar-expand-md navbar-light fixed-top shadow-sm mb-3">
+            <div id="branding" class="ms-3">
+                <h1><span class="highlight">Rehab</span>Aid</h1>
+            </div>
+            <div class="container-fluid">
+                <ul class="navbar-nav ms-auto justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="" asp-page="./index">Home</a>
+                    </li>
+                    <li class="nav-item">
+
+                        <a class="nav-link text-white"  asp-page="./about">About us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Login">Login <i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+    </header>
+    <div role="main">
+        @RenderBody()
+    </div>
+  
+
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - RehabAid.Web - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>

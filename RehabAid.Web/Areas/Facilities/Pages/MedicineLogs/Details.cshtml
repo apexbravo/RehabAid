@@ -1,0 +1,38 @@
+﻿@page
+@model RehabAid.Web.Areas.Facilities.Pages.MedicineLogs.DetailsModel
+@{
+}
+@section breadcrumb{
+    <a class="breadcrumb-item" asp-page="/MedicineLogs/Index">Medicine</a>
+    <a class="breadcrumb-item" asp-page=".">Details</a>
+}
+@using Humanizer
+<div class="col-md-7 col-ldg-8">
+    <div class="card shadow">
+        <div class="card-body">
+            <div class="form-group row">
+                <label class="col-md-3 text-muted">Patient</label>
+                <div class="col-md-9"><div class="label-value">@Model.MedicineLog.Patient.FirstName</div></div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-3 text-muted">Name</label>
+                <div class="col-md-9"><div class="label-value">@Model.MedicineLog.Name</div></div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 text-muted">Prescription Label</label>
+                <div class="col-md-9"><div class="label-value">@Model.MedicineLog.PrescriptionLabel</div></div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 text-muted">Date Issued</label>
+                <div class="col-md-9"><div class="label-value">@Model.MedicineLog.DateIssued</div></div>
+            </div>
+
+            @*<div class="form-group row">
+            <label class="col-md-3 text-muted">Specialty</label>
+            <div class="col-md-9"><div class="label-value">@Model.Specialist.Specialty.Humanize(Humanizer.LetterCasing.Sentence)</div></div>
+        </div>*@
+
+
+        </div>
+    </div>

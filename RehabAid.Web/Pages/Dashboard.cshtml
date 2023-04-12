@@ -1,0 +1,161 @@
+﻿@page
+@model RehabAid.Web.Pages.DashboardModel
+@{
+}
+
+@if (User.IsPatient())
+{
+    <partial name="UserLayouts/__Patient" />
+}
+
+else if (User.IsSpecialist())
+{
+    <partial name="UserLayouts/__Specialist" />
+}
+
+else if (User.IsStaff())
+{
+    <partial name="UserLayouts/__Staff" />
+}
+
+else
+{
+    <h3 class="mb-4">Hey there, @Model.CurrentUser.Name</h3>
+    <div class="row mb-3" id="cards">
+        <div>
+            <div class="dashboard-card">
+                <div class="card-body">
+                    <div class="card-row">
+                        <div class="col">
+
+
+                            <h6 class="dashboard-cardtitle">
+                                Treatment Facilities
+                            </h6>
+                            <span class="dashboard-cardheading" id="memberscount">
+                                34
+                            </span>
+                        </div>
+                        <div class="col-auto">
+                            <span class="dashboard-icon text-muted "><i class="fa fa-hospital-o "></i></span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div>
+            <div class="dashboard-card">
+                <div class="card-body">
+                    <div class="card-row">
+                        <div class="col">
+                            <h6 class="dashboard-cardtitle">
+                                Doctors
+                            </h6>
+                            <span class="dashboard-cardheading" id="claimscount">
+                                12
+                            </span>
+                        </div>
+                        <div class="col-auto">
+                            <span class="dashboard-icon"><i class="fa fa-user-md" style="color:dodgerblue"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+
+
+            <div class="dashboard-card">
+                <div class="card-body">
+                    <div class="card-row">
+                        <div class="col">
+                            <h6 class="dashboard-cardtitle">
+                                Staff Members
+                            </h6>
+                            <span class="dashboard-cardheading" id="policiescount">
+                                14
+                            </span>
+                        </div>
+                        <div class="col-auto">
+                            <span class="dashboard-icon"><i class="fa fa-group" style="color:hotpink"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class=" col-md-8 ms-1">
+            <div class="">
+                <h3>Available Treatment Facilities</h3>
+
+            </div>
+            <div class="card">
+
+                <table class="table table-striped table-sm">
+
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th>Type</th>
+                        <th>Edit Details</th>
+                    </tr>
+
+
+                    <tr>
+                        <td>Mandipa Hope</td>
+                        <td>5 Winslow, Khumalo</td>
+                        <td>+263 71 477 5601</td>
+                        <td>mandipahope@gmail.com</td>
+                        <td>Private</td>
+                        <td><a href="#" class="btn">Edit</a></td>
+
+                    </tr>
+                    <tr>
+                        <td>Healing Rain Garden</td>
+                        <td>Vumba</td>
+                        <td>+263 77 930 8145</td>
+                        <td>healingrain@gmail.com</td>
+                        <td>Private</td>
+                        <td><a href="#" class="btn">Edit</a></td>
+
+                    </tr>
+                    <tr>
+                        <td>Mandipa Hope</td>
+                        <td>5 Winslow, Khumalo</td>
+                        <td>+263 71 477 5601</td>
+                        <td>mandipahope@gmail.com</td>
+                        <td>Private</td>
+                        <td><a href="#" class="btn">Edit</a></td>
+
+                    </tr>
+                    <tr>
+                        <td>Healing Rain Garden</td>
+                        <td>Vumba</td>
+                        <td>+263 77 930 8145</td>
+                        <td>healingrain@gmail.com</td>
+                        <td>Private</td>
+                        <td><a href="#" class="btn">Edit</a></td>
+
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="">
+                <h3>New Doctors</h3>
+
+            </div>
+            <div class="card">
+
+            </div>
+        </div>
+
+    </div>
+}

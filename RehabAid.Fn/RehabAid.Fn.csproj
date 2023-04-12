@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AzureFunctionsVersion>v3</AzureFunctionsVersion>
+	  <UserSecretsId>9eba0512-11b3-4e25-8b2f-da8e581781a9</UserSecretsId>
+	  
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.1.1" />
+    <PackageReference Include="MimeMapping" Version="1.0.1.50" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.18" />
+    <PackageReference Include="ScottPlot" Version="4.1.62" />
+    <PackageReference Include="wCyber.Helpers.Web" Version="6.0.8" />
+    <PackageReference Include="wCyber.Lib.FileStorage" Version="1.0.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="host.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

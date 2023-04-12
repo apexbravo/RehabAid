@@ -1,0 +1,74 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+@{ Layout = "/Pages/Shared/_BlankLayout.cshtml"; }
+
+<section id="showcase">
+ 
+    <div class="container">
+        <div id="overlay">
+        <h1 >Addiction Rehabilitation Assistance</h1>
+        <p>Your health Is Your wealth</p>
+
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+
+                @foreach (var item in Model.TreatmentFacilities)
+                {
+                    
+                <a asp-page="./Details" asp-area="Facilities" asp-route-id="@item.Id" class="p-3">
+                    <div class="carousel-item  @((item == Model.TreatmentFacilities.First()) ? "active" : "")">
+
+                        <div class="carousel-image-circle text-center">
+                            @if (!item.LogoId.HasValue)
+                            {<img class="d-block w-100" src="~/images/company.png" />}
+                            else
+                            { <img class="d-block w-100" src="@Url.PageLink(pageHandler: "Image", pageName: "Attachments/Index" , values: new {Id=item.LogoId })" />}
+                        </div>
+                        <h4>@item.Name &mdash; @item.Email</h4>
+
+
+                    </div>
+                    </a>
+                    }
+                    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+</div>
+            </div>
+        <style>
+            .carousel-image-circle {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                overflow: hidden;
+                display: block;
+                margin-left:auto;
+                margin-right:auto;
+              
+
+            }
+
+        
+
+                .carousel-image-circle img {
+                    max-width: 100%;
+                    max-height: 100%;
+                    object-fit: contain; /* Change object-fit property value to 'contain' */
+                    display: block; /* Add display: block to the img element */
+                    margin: auto; /* Add margin: auto to center the image horizontally */
+                }
+        </style>
+
+
+            </div>
+  
+    </div>
+</section>

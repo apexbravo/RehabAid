@@ -1,0 +1,48 @@
+﻿@page
+@model RehabAid.Web.Areas.Facilities.Pages.Staffs.DetailsModel
+@{
+}
+@section breadcrumb{
+    <a class="breadcrumb-item" asp-page="/Staffs/Index">Staff</a>
+    <a class="breadcrumb-item" asp-page=".">Details</a>
+}
+@using Humanizer
+<div class="col-md-7 col-ldg-8">
+    <div class="card shadow">
+        <div class="card-body">
+
+
+            <div class="form-group row">
+                <label class="col-md-3 text-muted">First Name</label>
+                <div class="col-md-9"><div class="label-value">@Model.Staff.FirstName</div></div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 text-muted">Surname</label>
+                <div class="col-md-9"><div class="label-value">@Model.Staff.Surname</div></div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 text-muted">Phone Number</label>
+                <div class="col-md-9"><div class="label-value">@Model.Staff.PhoneNumber</div></div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 text-muted">Email</label>
+                <div class="col-md-9"><div class="label-value">@Model.Staff.Email</div></div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 text-muted">Role</label>
+                <div class="col-md-9"><div class="label-value">@Model.Staff.RoleId</div></div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-md-3 text-muted">Address</label>
+                <div class="col-md-9"><div class="label-value">@Model.Staff.Address</div></div>
+            </div>
+            @*<div class="form-group row">
+            <label class="col-md-3 text-muted">Specialty</label>
+            <div class="col-md-9"><div class="label-value">@Model.Specialist.Specialty.Humanize(Humanizer.LetterCasing.Sentence)</div></div>
+        </div>*@
+
+
+        </div>
+    </div>
