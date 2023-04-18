@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RehabAid.Data;
@@ -9,9 +10,10 @@ using RehabAid.Data;
 namespace RehabAid.Data.Migrations
 {
     [DbContext(typeof(RehabAidContext))]
-    partial class RehabAidContextModelSnapshot : ModelSnapshot
+    [Migration("20230415204440_hutr")]
+    partial class hutr
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -587,9 +589,6 @@ namespace RehabAid.Data.Migrations
                         .HasColumnType("character varying(128)")
                         .HasMaxLength(128);
 
-                    b.Property<Guid?>("GuardianId")
-                        .HasColumnType("uuid");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
@@ -623,6 +622,9 @@ namespace RehabAid.Data.Migrations
                         .HasColumnType("character varying(256)")
                         .HasMaxLength(256);
 
+                    b.Property<Guid?>("PatientId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("character varying(256)")
                         .HasMaxLength(256);
@@ -638,7 +640,7 @@ namespace RehabAid.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GuardianId");
+                    b.HasIndex("PatientId");
 
                     b.HasIndex("SpecialistId");
 
@@ -825,10 +827,10 @@ namespace RehabAid.Data.Migrations
 
             modelBuilder.Entity("RehabAid.Data.User", b =>
                 {
-                    b.HasOne("RehabAid.Data.Guardians", "Guardian")
+                    b.HasOne("RehabAid.Data.Patient", "Patient")
                         .WithMany("User")
-                        .HasForeignKey("GuardianId")
-                        .HasConstraintName("GuardianId");
+                        .HasForeignKey("PatientId")
+                        .HasConstraintName("PatientId");
 
                     b.HasOne("RehabAid.Data.Specialist", "SpecialistNavigation")
                         .WithMany("User")

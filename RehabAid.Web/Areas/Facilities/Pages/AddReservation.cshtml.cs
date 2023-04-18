@@ -43,20 +43,20 @@ namespace RehabAid.Web.Areas.Facilities.Pages
             Reservation.CreationDate = DateTime.UtcNow;
             Reservation.Status = (int)Status.Pending;
 
-            using (var httpClient = new HttpClient())
-            {
-                var functionUrl = "http://localhost:7071/api/SendEmail";
-                var requestBody = new
-                {
-                    Email = Reservation.Email,
+            //using (var httpClient = new HttpClient())
+            //{
+            //    var functionUrl = "http://localhost:7071/api/SendEmail";
+            //    var requestBody = new
+            //    {
+            //        Email = Reservation.Email,
                   
-                };
-                var json = JsonConvert.SerializeObject(requestBody);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync(functionUrl, content);
+            //    };
+            //    var json = JsonConvert.SerializeObject(requestBody);
+            //    var content = new StringContent(json, Encoding.UTF8, "application/json");
+            //    var response = await httpClient.PostAsync(functionUrl, content);
 
 
-            }
+            //}
 
             await Db.Reservation.AddAsync(Reservation);
             await Db.SaveChangesAsync();

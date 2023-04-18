@@ -27,7 +27,7 @@ namespace RehabAid_WebML.Model
             MLContext mlContext = new MLContext();
 
             // Load model & create prediction engine
-            string modelPath = @"C:\Users\apexb\AppData\Local\Temp\MLVSTools\RehabAid.WebML\RehabAid.WebML.Model\MLModel.zip";
+            string modelPath = @"C:\Users\Gaelle\source\repos\RehabAid\RehabAid.WebML.Model\MLModel.zip";
             ITransformer mlModel = mlContext.Model.Load(modelPath, out var modelInputSchema);
             var predEngine = mlContext.Model.CreatePredictionEngine<ModelInput, ModelOutput>(mlModel);
 

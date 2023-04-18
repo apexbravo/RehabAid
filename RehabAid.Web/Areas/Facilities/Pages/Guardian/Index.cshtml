@@ -6,15 +6,16 @@
     <a class="breadcrumb-item" asp-page="/Guardians/Index">Guardians </a>
 
 }
-@*
-      @if (User.IsSysUser())
+
+      @if (User.IsStaff())
     {
+        
     }
 
-*@
 <div class="btn-toolbar float-end d-inline pb-3">
     <a class="btn btn-sm btn-outline-secondary " asp-page="Add"><i class="fa fa-pluss"></i> Add new Guardian</a>
 </div>
+
 
 
 <h4 class="font-weight-light text-primary"><strong>@Model.List.TotalItemCount</strong> Guardian@(Model.List.TotalItemCount == 1 ? "" : "s") @(Model.QueryString != null ? "" : "found")</h4>

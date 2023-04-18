@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Text;
 
-namespace RehabAid.Data.Partials
+namespace RehabAid.Data
 {
-    class Staff
+    partial class Staff
     {
+
+        [NotMapped]
+        public string Fullname => string.Join(" ", new string[] { FirstName, Surname }.Where(c => !string.IsNullOrWhiteSpace(c)));
     }
 }

@@ -9,23 +9,21 @@ using RehabAid.Data;
 using RehabAid.Web.Pages;
 using X.PagedList;
 
-namespace RehabAid.Web.Areas.Facilities.Pages.MedicineLogs
+namespace RehabAid.Web.Areas.Facilities.Pages.Guardian.ProgressReports
 {
-    public class IndexModel : SysListPageModel<MedicineLog>
+    public class IndexModel : SysListPageModel<ProgressReport>
     {
         public void OnGet(int? p, int? ps, string q)
         {
-            var query = Db.MedicineLog
+            var query = Db.ProgressReport
+                .Include(c => c.Guardian)
                 .Include(c => c.Patient)
+                .Include(c => c.MedicineLog)
                 .AsQueryable();
-            if (!string.IsNullOrWhiteSpace(q))
-            {
-                QueryString = q;
-                query = query.Where(c => c.Name.Contains(q));
-            }
 
-            List = query.OrderBy(c => c.Name).ToPagedList(p ?? 1, ps ?? DefaultPageSize);
+
+
+            List = query.OrderBy(c => c.CreateDate).ToPagedList(p ?? 1, ps ?? DefaultPageSize);
         }
     }
 }
-

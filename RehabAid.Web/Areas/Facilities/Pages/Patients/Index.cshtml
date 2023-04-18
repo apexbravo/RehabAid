@@ -6,16 +6,16 @@
     <a class="breadcrumb-item" asp-page="Patients/Index">Patients </a>
 
 }
-@if (User.IsSysUser())
+
+@if (User.IsStaff())
 {
-}
-@if (!User.IsSpecialist())
-{
-    <div class="btn-toolbar float-end d-inline pb-3">
-        <a class="btn btn-sm btn-outline-secondary " asp-page="Add"><i class="fa fa-pluss"></i> Add new Patient</a>
-    </div>
+
 }
 
+
+<div class="btn-toolbar float-end d-inline pb-3">
+    <a class="btn btn-sm btn-outline-secondary " asp-page="Add"><i class="fa fa-pluss"></i> Add new Patient</a>
+</div>
 
 
 <h4 class="font-weight-light text-primary"><strong>@Model.List.TotalItemCount</strong> Patient@(Model.List.TotalItemCount == 1 ? "" : "s") @(Model.QueryString != null ? "" : "found")</h4>

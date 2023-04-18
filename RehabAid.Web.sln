@@ -18,7 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RehabAid.WebML.Model", "Reh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RehabAid.WebML.ConsoleApp", "RehabAid.WebML.ConsoleApp\RehabAid.WebML.ConsoleApp.csproj", "{4C5EB4E9-BD12-426D-885D-25F0121D3286}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RehabAid.Fun", "RehabAid.Fun\RehabAid.Fun.csproj", "{4B796867-7BAF-4E4C-B4BA-4246256FC601}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RehabAid.Fun", "RehabAid.Fun\RehabAid.Fun.csproj", "{4B796867-7BAF-4E4C-B4BA-4246256FC601}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

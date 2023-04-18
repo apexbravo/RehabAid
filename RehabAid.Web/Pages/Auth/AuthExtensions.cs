@@ -22,12 +22,12 @@ namespace RehabAid.Web.Pages.Auth
             var claims = new List<System.Security.Claims.Claim>();
             if (user != null)
             {
-
+                
                 var userType = UserType.User;
-                if (user.PatientId.HasValue)
+                if (user.GuardianId.HasValue)
                 {
-                    userType = UserType.Patient;
-                    claims.Add(new System.Security.Claims.Claim(ClaimsHelper.UserTypePortalId, user.PatientId.ToString()));
+                    userType = UserType.Guardians;
+                    claims.Add(new System.Security.Claims.Claim(ClaimsHelper.UserTypePortalId, user.GuardianId.ToString()));
                 }
 
 
@@ -91,8 +91,8 @@ namespace RehabAid.Web.Pages.Auth
 
     
 
-        public static bool IsPatient(this ClaimsPrincipal principal)
-           => principal.GetUserType().HasFlag(UserType.Patient);
+        public static bool IsGuardians(this ClaimsPrincipal principal)
+           => principal.GetUserType().HasFlag(UserType.Guardians);
 
         public static bool IsStaff(this ClaimsPrincipal principal)
            => principal.GetUserType().HasFlag(UserType.Staff);

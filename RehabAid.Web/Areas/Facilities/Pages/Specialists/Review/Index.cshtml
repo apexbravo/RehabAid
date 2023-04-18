@@ -3,7 +3,7 @@
 @{
 }
 @section breadcrumb{
-    <a class="breadcrumb-item" asp-page="Specialists/Index">Specialists </a>
+    <a class="breadcrumb-item" asp-page="Specialists/Index">Specialist Review </a>
 
 }
 @*
@@ -12,12 +12,12 @@
     }
 
 *@
-<div class="btn-toolbar float-end d-inline pb-3">
-    <a class="btn btn-sm btn-outline-secondary " asp-page="Add"><i class="fa fa-pluss"></i> Add new Specialist</a>
-</div>
+@*<div class="btn-toolbar float-end d-inline pb-3">
+    <a class="btn btn-sm btn-outline-secondary " asp-page="Add"><i class="fa fa-pluss"></i> Add new Review</a>
+</div>*@
 
 
-<h4 class="font-weight-light text-primary"><strong>@Model.List.TotalItemCount</strong> specialist@(Model.List.TotalItemCount == 1 ? "" : "s") @(Model.QueryString != null ? "" : "found")</h4>
+<h4 class="font-weight-light text-primary"><strong>@Model.List.TotalItemCount</strong> Review@(Model.List.TotalItemCount == 1 ? "" : "s") @(Model.QueryString != null ? "" : "found")</h4>
 <table class="table table-striped table-hover table-sm">
     <thead>
         <tr>

@@ -27,13 +27,14 @@
         </div>
         @if (SignInManager.IsSignedIn(User))
         {
-            @if (User.IsPatient())
+            @if (User.IsGuardians())
             {
+                <partial name="Sidebar/__Guardians" />
 
             }
             else if (User.IsStaff())
             {
-
+                <partial name="Sidebar/__Staff" />
             }
             else if (User.IsSpecialist())
             {
@@ -45,13 +46,14 @@
                 <ul class="side-list">
                     <li><i class="fa fa-newspaper-o"></i><span class="d-none d-sm-inline">&nbsp;Dashboard</span></li>
                     <li><i class="fa fa-hospital-o"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/Index">Facilities</a></span></li>
-                    <li><i class="fa fa-group"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/Patients/Index">Patients</a></span></li>
+                    <li><i class="fa fa-bed"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/Patients/Index">Patients</a></span></li>
                     <li><i class="fa fa-group"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/Guardian/Index">Guardians</a></span></li>
+                    <li><i class="fa fa-files-o"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/Guardian/ProgressReports/Index">Progress Reports</a></span></li>
+                    <li><i class="fa fa-medkit"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/MedicineLogs/Index">Medicine</a></span></li>
 
                     <li><i class="fa fa-user-md"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/Specialists/Index">Specialists</a></span></li>
-                    <li><i class="fa fa-user-md"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/Staffs/Index">Staff</a></span></li>
-                    <li><i class="fa fa-user-md"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/Reservations/Index">Reservations</a></span></li>
-                    <li><i class="fa fa-user-md"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/MedicineLogs/Index">Medicine</a></span></li>
+                    <li><i class="fa fa-group"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/Staffs/Index">Staff</a></span></li>
+                    <li><i class="fa fa-list-alt"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/Reservations/Index">Reservations</a></span></li>
 
                     @*<li><i class="fa fa-user-md"></i><span class="d-none d-sm-inline">&nbsp;<a href="doctors.html">Specialists</a></span></li>*@
 

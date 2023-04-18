@@ -8,7 +8,7 @@ namespace RehabAid.Lib
     public enum UserType : int
     {
         User = 1,
-        Patient = 2,
+        Guardians = 2,
         Staff = 3,
         Specialist = 4,
         Guardian = 5,

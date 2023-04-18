@@ -14,8 +14,9 @@ namespace RehabAid.Data
             Guardians = new HashSet<Guardians>();
             MedicineLog = new HashSet<MedicineLog>();
             PatientAttentance = new HashSet<PatientAttentance>();
+            ProgressReport = new HashSet<ProgressReport>();
+            ProgressReports = new HashSet<ProgressReports>();
             SpecialistReview = new HashSet<SpecialistReview>();
-            User = new HashSet<User>();
         }
 
         public Guid Id { get; set; }
@@ -34,7 +35,8 @@ namespace RehabAid.Data
         public virtual ICollection<Guardians> Guardians { get; set; }
         public virtual ICollection<MedicineLog> MedicineLog { get; set; }
         public virtual ICollection<PatientAttentance> PatientAttentance { get; set; }
+        public virtual ICollection<ProgressReport> ProgressReport { get; set; }
+        public virtual ICollection<ProgressReports> ProgressReports { get; set; }
         public virtual ICollection<SpecialistReview> SpecialistReview { get; set; }
-        public virtual ICollection<User> User { get; set; }
     }
 }

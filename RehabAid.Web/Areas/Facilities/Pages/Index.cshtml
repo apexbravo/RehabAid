@@ -6,15 +6,20 @@
     <a class="breadcrumb-item" asp-page="/Index">Facilities </a>
 
 }
-@*
-      @if (User.IsSysUser())
-    {
-    }
 
-*@
-<div class="btn-toolbar float-end d-inline pb-3">
-    <a class="btn btn-sm btn-outline-secondary " asp-page="Add"><i class="fa fa-pluss"></i> Add new Facility</a>
-</div>
+@if (User.IsSysUser())
+{
+    <div class="btn-toolbar float-end d-inline pb-3">
+        <a class="btn btn-sm btn-outline-secondary " asp-page="Add"><i class="fa fa-pluss"></i> Add new Facility</a>
+    </div>
+}
+@*@if (!User.IsSpecialist() || !User.IsStaff() || !User.IsGuardians())
+{
+
+}*@
+@*<div class="btn-toolbar float-end d-inline pb-3">
+        <a class="btn btn-sm btn-outline-secondary " asp-page="Add"><i class="fa fa-pluss"></i> Add new Facility</a>
+    </div>*@
 
 
 <h4 class="font-weight-light text-primary"><strong>@Model.List.TotalItemCount</strong> facilit@(Model.List.TotalItemCount == 1 ? "y" : "ies") @(Model.QueryString != null ? "" : "found")</h4>
@@ -34,43 +39,43 @@
     <tbody>
         @foreach (var item in Model.List)
         {
-        <tr>
+            <tr>
 
-            <td>
-                <div>
-                    <div style="width: 45px; height: 45px; padding-top:10px !important" class="font-weight-bold text-center float-left mr-2 p-2 border border-dark rounded-circle bg-light">@($"{item.Name}".Initials())</div>
+                <td>
                     <div>
+                        <div style="width: 45px; height: 45px; padding-top:10px !important" class="font-weight-bold text-center float-left mr-2 p-2 border border-dark rounded-circle bg-light">@($"{item.Name}".Initials())</div>
+                        <div>
 
+                        </div>
                     </div>
-                </div>
 
-            </td>
-            <td> <a asp-page="./Details" asp-route-id="@item.Id" class="p-3"> @item.Name</a></td>
+                </td>
+                <td> <a asp-page="./Details" asp-route-id="@item.Id" class="p-3"> @item.Name</a></td>
 
 
-            <td>
-                @item.PhoneNumber
-            </td>
-            <td>@item.Email</td>
-            <td>@item.Address</td>
-            <td>
-                @if (item.TypeId == (int)FacilityType.Acute_Care)
-                {
-                    <h4 class="badge bg-success d-inline">Acute Care</h4>
-                }
-                else if (item.TypeId == (int)FacilityType.Home_Health)
+                <td>
+                    @item.PhoneNumber
+                </td>
+                <td>@item.Email</td>
+                <td>@item.Address</td>
+                <td>
+                    @if (item.TypeId == (int)FacilityType.Acute_Care)
+                    {
+                        <h4 class="badge bg-success d-inline">Acute Care</h4>
+                    }
+                    else if (item.TypeId == (int)FacilityType.Home_Health)
 
-                {
+                    {
 
-                    <h4 class="badge bg-warning d-inline text-black"></h4>
-                }
-                else
-                {
-                    <h4 class="badge bg-danger d-inline ">School Based</h4>
-                }
-            </td>
+                        <h4 class="badge bg-warning d-inline text-black"></h4>
+                    }
+                    else
+                    {
+                        <h4 class="badge bg-danger d-inline ">School Based</h4>
+                    }
+                </td>
 
-        </tr>
+            </tr>
         }
     <tfoot>
 

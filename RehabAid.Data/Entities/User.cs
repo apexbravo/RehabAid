@@ -12,8 +12,9 @@ namespace RehabAid.Data
         public User()
         {
             Attachment = new HashSet<Attachment>();
-            MedicineLog = new HashSet<MedicineLog>();
             PatientAttentance = new HashSet<PatientAttentance>();
+            ProgressReport = new HashSet<ProgressReport>();
+            ProgressReports = new HashSet<ProgressReports>();
             Reservation = new HashSet<Reservation>();
             Specialist = new HashSet<Specialist>();
             SpecialistAppointment = new HashSet<SpecialistAppointment>();
@@ -41,16 +42,17 @@ namespace RehabAid.Data
         public bool IsMobileConfirmed { get; set; }
         public Guid? CreatorId { get; set; }
         public DateTime CreationDate { get; set; }
-        public Guid? PatientId { get; set; }
         public Guid? StaffId { get; set; }
         public Guid? SpecialistId { get; set; }
+        public Guid? GuardianId { get; set; }
 
-        public virtual Patient Patient { get; set; }
+        public virtual Guardians Guardian { get; set; }
         public virtual Specialist SpecialistNavigation { get; set; }
         public virtual Staff StaffNavigation { get; set; }
         public virtual ICollection<Attachment> Attachment { get; set; }
-        public virtual ICollection<MedicineLog> MedicineLog { get; set; }
         public virtual ICollection<PatientAttentance> PatientAttentance { get; set; }
+        public virtual ICollection<ProgressReport> ProgressReport { get; set; }
+        public virtual ICollection<ProgressReports> ProgressReports { get; set; }
         public virtual ICollection<Reservation> Reservation { get; set; }
         public virtual ICollection<Specialist> Specialist { get; set; }
         public virtual ICollection<SpecialistAppointment> SpecialistAppointment { get; set; }
