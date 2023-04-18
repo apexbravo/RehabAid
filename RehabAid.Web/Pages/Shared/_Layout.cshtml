@@ -27,14 +27,17 @@
         </div>
         @if (SignInManager.IsSignedIn(User))
         {
-            @if (User.IsGuardians())
+            @if (User.IsStaff())
             {
-                <partial name="Sidebar/__Guardians" />
+                <partial name = "Sidebar/__Staff" />
+
+
+
 
             }
-            else if (User.IsStaff())
+            else if (User.IsGuardians())
             {
-                <partial name="Sidebar/__Staff" />
+                <partial name="Sidebar/__Guardians" />
             }
             else if (User.IsSpecialist())
             {

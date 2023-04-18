@@ -35,9 +35,7 @@ namespace RehabAid.Web.Pages.Auth
                 {
                     userType = UserType.Staff;
                 
-                   
-
-                    claims.Add(new System.Security.Claims.Claim(ClaimsHelper.UserTypePortalId, user.StaffId.ToString()));
+                   claims.Add(new System.Security.Claims.Claim(ClaimsHelper.UserTypePortalId, user.StaffId.ToString()));
                 }
                 else if (user.SpecialistId.HasValue)
                 {
@@ -46,7 +44,7 @@ namespace RehabAid.Web.Pages.Auth
                 }
                 else
                 {
-                    userType = UserType.User;
+                   
                     claims.Add(new System.Security.Claims.Claim(ClaimsHelper.UserTypePortalId, user.Id.ToString()));
                 }
 

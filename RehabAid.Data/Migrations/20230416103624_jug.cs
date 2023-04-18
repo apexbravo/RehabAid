@@ -7,35 +7,33 @@ namespace RehabAid.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            //migrationBuilder.DropForeignKey(
-            //    name: "PatientId",
-            //    table: "Guardians");
+           
 
-            //migrationBuilder.DropIndex(
-            //    name: "IX_User_PatientId",
-            //    table: "User");
+            migrationBuilder.DropIndex(
+                name: "IX_User_PatientId",
+                table: "User");
 
-            //migrationBuilder.DropColumn(
-            //    name: "PatientId",
-            //    table: "User");
+            migrationBuilder.DropColumn(
+                name: "PatientId",
+                table: "User");
 
-            //migrationBuilder.AddColumn<Guid>(
-            //    name: "GuardianId",
-            //    table: "User",
-            //    nullable: true);
+            migrationBuilder.AddColumn<Guid>(
+                name: "GuardianId",
+                table: "User",
+                nullable: true);
 
-            //migrationBuilder.CreateIndex(
-            //    name: "IX_User_GuardianId",
-            //    table: "User",
-            //    column: "GuardianId");
+            migrationBuilder.CreateIndex(
+                name: "IX_User_GuardianId",
+                table: "User",
+                column: "GuardianId");
 
-            //migrationBuilder.AddForeignKey(
-            //    name: "GuardianId",
-            //    table: "User",
-            //    column: "GuardianId",
-            //    principalTable: "Guardians",
-            //    principalColumn: "Id",
-            //    onDelete: ReferentialAction.Restrict);
+            migrationBuilder.AddForeignKey(
+                name: "GuardianId",
+                table: "User",
+                column: "GuardianId",
+                principalTable: "Guardians",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
