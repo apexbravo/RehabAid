@@ -44,7 +44,7 @@ namespace RehabAid.Fun
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
 
             // Send email
-            var response = await client.SendEmailAsync(msg);
+             var response = await client.SendEmailAsync(msg);
 
             if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
             {

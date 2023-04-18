@@ -11,5 +11,6 @@ namespace RehabAid.Lib
         Patient = 2,
         Staff = 3,
         Specialist = 4,
+        Guardian = 5,
     }
 }
