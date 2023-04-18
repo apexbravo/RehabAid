@@ -11,7 +11,10 @@ namespace RehabAid.Data
     {
         public Guardians()
         {
+            ProgressReport = new HashSet<ProgressReport>();
+            ProgressReports = new HashSet<ProgressReports>();
             Reservation = new HashSet<Reservation>();
+            User = new HashSet<User>();
         }
 
         public Guid Id { get; set; }
@@ -26,6 +29,9 @@ namespace RehabAid.Data
 
         public virtual TreatmentFacility Facility { get; set; }
         public virtual Patient Patient { get; set; }
+        public virtual ICollection<ProgressReport> ProgressReport { get; set; }
+        public virtual ICollection<ProgressReports> ProgressReports { get; set; }
         public virtual ICollection<Reservation> Reservation { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

@@ -3,9 +3,9 @@
 @{
 }
 
-@if (User.IsPatient())
+@if (User.IsGuardians())
 {
-    <partial name="UserLayouts/__Patient" />
+    <partial name="UserLayouts/__Guardians" />
 }
 
 else if (User.IsSpecialist())

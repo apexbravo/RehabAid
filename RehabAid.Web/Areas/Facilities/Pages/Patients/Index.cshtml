@@ -6,12 +6,13 @@
     <a class="breadcrumb-item" asp-page="Patients/Index">Patients </a>
 
 }
-@*
-      @if (User.IsSysUser())
-    {
-    }
 
-*@
+@if (User.IsStaff())
+{
+
+}
+
+
 <div class="btn-toolbar float-end d-inline pb-3">
     <a class="btn btn-sm btn-outline-secondary " asp-page="Add"><i class="fa fa-pluss"></i> Add new Patient</a>
 </div>
@@ -33,31 +34,31 @@
     <tbody>
         @foreach (var item in Model.List)
         {
-        <tr>
+            <tr>
 
-            @*<td>
-                   <div>
-                <div style="width: 45px; height: 45px; padding-top:10px !important" class="font-weight-bold text-center float-left mr-2 p-2 border border-dark rounded-circle bg-light">@($"{item.FirstName} {item.Surname}".Initials())</div>
-                <div>
+                @*<td>
+                               <div>
+                            <div style="width: 45px; height: 45px; padding-top:10px !important" class="font-weight-bold text-center float-left mr-2 p-2 border border-dark rounded-circle bg-light">@($"{item.FirstName} {item.Surname}".Initials())</div>
+                            <div>
 
-                </div>
-            </div>
+                            </div>
+                        </div>
 
-        </td>*@
-            <td> <a asp-page="./Details" asp-route-id="@item.Id" class="p-3"> @item.FirstName</a></td>
-            <td> @item.Surname</td>
-            <td> @item.Age</td>
-            <td>  @item.Gender</td>
+                    </td>*@
+                <td> <a asp-page="./Details" asp-route-id="@item.Id" class="p-3"> @item.FirstName</a></td>
+                <td> @item.Surname</td>
+                <td> @item.Age</td>
+                <td>  @item.Gender</td>
 
-            <td>
-                @item.EmergencyContact
-            </td>
+                <td>
+                    @item.EmergencyContact
+                </td>
 
-            <td> 
-                @item.Address
-            </td>
+                <td>
+                    @item.Address
+                </td>
 
-        </tr>
+            </tr>
         }
     <tfoot>
 

@@ -9,6 +9,11 @@ namespace RehabAid.Data
 {
     public partial class MedicineLog
     {
+        public MedicineLog()
+        {
+            ProgressReport = new HashSet<ProgressReport>();
+        }
+
         public Guid Id { get; set; }
         public string Name { get; set; }
         public Guid? PatientId { get; set; }
@@ -17,7 +22,7 @@ namespace RehabAid.Data
         public DateTime? CreationDate { get; set; }
         public string PrescriptionLabel { get; set; }
 
-        public virtual User Creator { get; set; }
         public virtual Patient Patient { get; set; }
+        public virtual ICollection<ProgressReport> ProgressReport { get; set; }
     }
 }

@@ -1,1 +1,1 @@
-Scaffold-DbContext "Host=localhost;Database=RehabAid;Username=postgres;Password=Tbmc@1445;" Npgsql.EntityFrameworkCore.PostgreSQL
+Scaffold-DbContext "Host=localhost;Database=RehabAid;Username=postgres;Password=admin;" Npgsql.EntityFrameworkCore.PostgreSQL

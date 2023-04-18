@@ -1,0 +1,56 @@
+﻿@page
+@model RehabAid.Web.Areas.Facilities.Pages.Guardian.ProgressReports.AddModel
+@{
+}
+@section breadcrumb{
+    <a class="breadcrumb-item" asp-page="/Index">Progress Reports</a>
+    <a class="breadcrumb-item" asp-page=".">Add</a>
+}
+<form method="post" enctype="multipart/form-data">
+    <div class="col-md-7 col-ldg-8">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="row">
+
+
+                    <div class="form-group">
+                        <label>Patient Name <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" asp-for="Patient.Fullname">
+                    </div>
+                    @*<div class="form-group">
+            <label>Surname <span class="text-danger">*</span></label>
+            <input class="form-control" type="text" asp-for="Guardian.Surname">
+        </div>*@
+                    @*<div class="form-group">
+            <label>Age <span class="text-danger">*</span></label>
+            <input class="form-control" type="text" asp-for="Guardian.Age">
+        </div>*@
+                    @*<div class="form-group">
+            <label>Gender</label>
+            <select class="form-select" asp-for="Patient.GenderId" asp-items="Model.Gender"></select>
+        </div>*@
+
+
+
+                    <div class="form-group">
+                        <label>Prescription</label>
+                        <input class="form-control" type="text" asp-for="MedicineLog.Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="review">Therapy Review</label>
+                        <textarea class="form-control" id="review" rows="5" asp-for="ProgressReport.TherapyReview"></textarea>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+            <div class="card-footer text-end">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o" aria-hidden="true"></i> Submit</button>
+            </div>
+        </div>
+    </div>
+</form>

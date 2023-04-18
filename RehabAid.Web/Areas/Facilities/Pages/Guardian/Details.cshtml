@@ -29,12 +29,12 @@
 
             <div class="form-group row">
                 <label class="col-md-3 text-muted">Email</label>
-                <div class="col-md-9"><div class="label-value">@Model.Guardian.PhoneNumber</div></div>
+                <div class="col-md-9"><div class="label-value">@Model.Guardian.Email</div></div>
             </div>
             @*<div class="form-group row">
-            <label class="col-md-3 text-muted">Gender</label>
-            <div class="col-md-9"><div class="label-value">@Model.Patient.Gender.Humanize(Humanizer.LetterCasing.Sentence)</div></div>
-        </div>*@
+                    <label class="col-md-3 text-muted">Gender</label>
+                    <div class="col-md-9"><div class="label-value">@Model.Patient.Gender.Humanize(Humanizer.LetterCasing.Sentence)</div></div>
+                </div>*@
 
             <div class="form-group row">
                 <label class="col-md-3 text-muted">Address</label>
@@ -46,9 +46,10 @@
             </div>
             <div class="form-group row">
                 <label class="col-md-3 text-muted">Patient</label>
-                <div class="col-md-9"><div class="label-value">@Model.Guardian.Patient.FirstName</div></div>
+                <div class="col-md-9"><div class="label-value"> @(Model.Guardian.Patient.FirstName + " " + Model.Guardian.Patient.Surname)</div></div>
             </div>
 
 
         </div>
     </div>
+</div>

@@ -24,6 +24,8 @@ namespace RehabAid.Data
         public virtual DbSet<MedicineLog> MedicineLog { get; set; }
         public virtual DbSet<Patient> Patient { get; set; }
         public virtual DbSet<PatientAttentance> PatientAttentance { get; set; }
+        public virtual DbSet<ProgressReport> ProgressReport { get; set; }
+        public virtual DbSet<ProgressReports> ProgressReports { get; set; }
         public virtual DbSet<Reservation> Reservation { get; set; }
         public virtual DbSet<Specialist> Specialist { get; set; }
         public virtual DbSet<SpecialistAppointment> SpecialistAppointment { get; set; }
@@ -37,7 +39,7 @@ namespace RehabAid.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseNpgsql("Host=localhost;Database=RehabAid;Username=postgres;Password=Tbmc@1445;");
+                optionsBuilder.UseNpgsql("Host=localhost;Database=RehabAid;Username=postgres;Password=admin;");
             }
         }
 
@@ -119,11 +121,6 @@ namespace RehabAid.Data
                     .IsRequired()
                     .HasMaxLength(64);
 
-                entity.HasOne(d => d.Creator)
-                    .WithMany(p => p.MedicineLog)
-                    .HasForeignKey(d => d.CreatorId)
-                    .HasConstraintName("CreatorId");
-
                 entity.HasOne(d => d.Patient)
                     .WithMany(p => p.MedicineLog)
                     .HasForeignKey(d => d.PatientId)
@@ -187,6 +184,68 @@ namespace RehabAid.Data
                     .WithMany(p => p.PatientAttentance)
                     .HasForeignKey(d => d.SpecialistId)
                     .HasConstraintName("SpecialistId");
+            });
+
+            modelBuilder.Entity<ProgressReport>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.CreateDate).HasColumnType("timestamp with time zone");
+
+                entity.Property(e => e.Prescription).HasMaxLength(64);
+
+                entity.HasOne(d => d.Creator)
+                    .WithMany(p => p.ProgressReport)
+                    .HasForeignKey(d => d.CreatorId)
+                    .HasConstraintName("CreatorId");
+
+                entity.HasOne(d => d.Guardian)
+                    .WithMany(p => p.ProgressReport)
+                    .HasForeignKey(d => d.GuardianId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("GuardianId");
+
+                entity.HasOne(d => d.MedicineLog)
+                    .WithMany(p => p.ProgressReport)
+                    .HasForeignKey(d => d.MedicineLogId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("MedicineLogId");
+
+                entity.HasOne(d => d.Patient)
+                    .WithMany(p => p.ProgressReport)
+                    .HasForeignKey(d => d.PatientId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("PatientId");
+            });
+
+            modelBuilder.Entity<ProgressReports>(entity =>
+            {
+                entity.HasIndex(e => e.CreatorId);
+
+                entity.HasIndex(e => e.GuardianId);
+
+                entity.HasIndex(e => e.PatientId);
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.CreateDate).HasColumnType("timestamp with time zone");
+
+                entity.HasOne(d => d.Creator)
+                    .WithMany(p => p.ProgressReports)
+                    .HasForeignKey(d => d.CreatorId)
+                    .HasConstraintName("CreatorId");
+
+                entity.HasOne(d => d.Guardian)
+                    .WithMany(p => p.ProgressReports)
+                    .HasForeignKey(d => d.GuardianId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("GuardianId");
+
+                entity.HasOne(d => d.Patient)
+                    .WithMany(p => p.ProgressReports)
+                    .HasForeignKey(d => d.PatientId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("PatientId");
             });
 
             modelBuilder.Entity<Reservation>(entity =>
@@ -269,6 +328,12 @@ namespace RehabAid.Data
 
             modelBuilder.Entity<SpecialistReview>(entity =>
             {
+                entity.HasIndex(e => e.CreatorId);
+
+                entity.HasIndex(e => e.PatientId);
+
+                entity.HasIndex(e => e.SpecialistId);
+
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.CreationDate).HasColumnType("timestamp with time zone");
@@ -314,6 +379,8 @@ namespace RehabAid.Data
                 entity.Property(e => e.PhoneNumber)
                     .IsRequired()
                     .HasMaxLength(64);
+
+                entity.Property(e => e.RoleId).HasMaxLength(64);
 
                 entity.Property(e => e.Surname)
                     .IsRequired()
@@ -361,6 +428,10 @@ namespace RehabAid.Data
 
             modelBuilder.Entity<User>(entity =>
             {
+                entity.HasIndex(e => e.SpecialistId);
+
+                entity.HasIndex(e => e.StaffId);
+
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.ActivationDate).HasColumnType("timestamp with time zone");
@@ -393,10 +464,10 @@ namespace RehabAid.Data
 
                 entity.Property(e => e.SecurityStamp).HasMaxLength(256);
 
-                entity.HasOne(d => d.Patient)
+                entity.HasOne(d => d.Guardian)
                     .WithMany(p => p.User)
-                    .HasForeignKey(d => d.PatientId)
-                    .HasConstraintName("PatientId");
+                    .HasForeignKey(d => d.GuardianId)
+                    .HasConstraintName("GuardianId");
 
                 entity.HasOne(d => d.SpecialistNavigation)
                     .WithMany(p => p.User)

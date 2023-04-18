@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using RehabAid.Data;
@@ -9,9 +10,10 @@ using RehabAid.Data;
 namespace RehabAid.Data.Migrations
 {
     [DbContext(typeof(RehabAidContext))]
-    partial class RehabAidContextModelSnapshot : ModelSnapshot
+    [Migration("20230413184515_flame")]
+    partial class flame
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -240,15 +242,8 @@ namespace RehabAid.Data.Migrations
                     b.Property<Guid>("GuardianId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("MedicineLogId")
-                        .HasColumnType("uuid");
-
                     b.Property<Guid>("PatientId")
                         .HasColumnType("uuid");
-
-                    b.Property<string>("Prescription")
-                        .HasColumnType("character varying(64)")
-                        .HasMaxLength(64);
 
                     b.Property<string>("TherapyReview")
                         .HasColumnType("text");
@@ -258,43 +253,10 @@ namespace RehabAid.Data.Migrations
                     b.HasIndex("CreatorId");
 
                     b.HasIndex("GuardianId");
-
-                    b.HasIndex("MedicineLogId");
 
                     b.HasIndex("PatientId");
 
                     b.ToTable("ProgressReport");
-                });
-
-            modelBuilder.Entity("RehabAid.Data.ProgressReports", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("CreateDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("CreatorId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("GuardianId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("PatientId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("TherapyReview")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatorId");
-
-                    b.HasIndex("GuardianId");
-
-                    b.HasIndex("PatientId");
-
-                    b.ToTable("ProgressReports");
                 });
 
             modelBuilder.Entity("RehabAid.Data.Reservation", b =>
@@ -488,9 +450,8 @@ namespace RehabAid.Data.Migrations
                         .HasColumnType("character varying(64)")
                         .HasMaxLength(64);
 
-                    b.Property<string>("RoleId")
-                        .HasColumnType("character varying(64)")
-                        .HasMaxLength(64);
+                    b.Property<int?>("RoleId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Surname")
                         .IsRequired()
@@ -587,9 +548,6 @@ namespace RehabAid.Data.Migrations
                         .HasColumnType("character varying(128)")
                         .HasMaxLength(128);
 
-                    b.Property<Guid?>("GuardianId")
-                        .HasColumnType("uuid");
-
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
@@ -623,6 +581,9 @@ namespace RehabAid.Data.Migrations
                         .HasColumnType("character varying(256)")
                         .HasMaxLength(256);
 
+                    b.Property<Guid?>("PatientId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("character varying(256)")
                         .HasMaxLength(256);
@@ -638,7 +599,7 @@ namespace RehabAid.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GuardianId");
+                    b.HasIndex("PatientId");
 
                     b.HasIndex("SpecialistId");
 
@@ -671,6 +632,11 @@ namespace RehabAid.Data.Migrations
 
             modelBuilder.Entity("RehabAid.Data.MedicineLog", b =>
                 {
+                    b.HasOne("RehabAid.Data.User", "Creator")
+                        .WithMany("MedicineLog")
+                        .HasForeignKey("CreatorId")
+                        .HasConstraintName("CreatorId");
+
                     b.HasOne("RehabAid.Data.Patient", "Patient")
                         .WithMany("MedicineLog")
                         .HasForeignKey("PatientId")
@@ -717,34 +683,8 @@ namespace RehabAid.Data.Migrations
                         .HasConstraintName("GuardianId")
                         .IsRequired();
 
-                    b.HasOne("RehabAid.Data.MedicineLog", "MedicineLog")
-                        .WithMany("ProgressReport")
-                        .HasForeignKey("MedicineLogId")
-                        .HasConstraintName("MedicineLogId")
-                        .IsRequired();
-
                     b.HasOne("RehabAid.Data.Patient", "Patient")
                         .WithMany("ProgressReport")
-                        .HasForeignKey("PatientId")
-                        .HasConstraintName("PatientId")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("RehabAid.Data.ProgressReports", b =>
-                {
-                    b.HasOne("RehabAid.Data.User", "Creator")
-                        .WithMany("ProgressReports")
-                        .HasForeignKey("CreatorId")
-                        .HasConstraintName("CreatorId");
-
-                    b.HasOne("RehabAid.Data.Guardians", "Guardian")
-                        .WithMany("ProgressReports")
-                        .HasForeignKey("GuardianId")
-                        .HasConstraintName("GuardianId")
-                        .IsRequired();
-
-                    b.HasOne("RehabAid.Data.Patient", "Patient")
-                        .WithMany("ProgressReports")
                         .HasForeignKey("PatientId")
                         .HasConstraintName("PatientId")
                         .IsRequired();
@@ -825,10 +765,10 @@ namespace RehabAid.Data.Migrations
 
             modelBuilder.Entity("RehabAid.Data.User", b =>
                 {
-                    b.HasOne("RehabAid.Data.Guardians", "Guardian")
+                    b.HasOne("RehabAid.Data.Patient", "Patient")
                         .WithMany("User")
-                        .HasForeignKey("GuardianId")
-                        .HasConstraintName("GuardianId");
+                        .HasForeignKey("PatientId")
+                        .HasConstraintName("PatientId");
 
                     b.HasOne("RehabAid.Data.Specialist", "SpecialistNavigation")
                         .WithMany("User")
