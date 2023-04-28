@@ -27,6 +27,7 @@ namespace RehabAid.Data
         public string AttachmentJson { get; set; }
         public int? ProgramId { get; set; }
         public int? ServiceId { get; set; }
+        public int? MaxLimit { get; set; }
 
         public virtual User Creator { get; set; }
         public virtual Attachment Logo { get; set; }

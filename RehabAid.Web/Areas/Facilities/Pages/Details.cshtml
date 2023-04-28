@@ -7,10 +7,17 @@
     <a class="breadcrumb-item" asp-page=".">Details</a>
 }
 
-@section actionbar{
-    <a class="btn btn-sm btn-outline-secondary " asp-route-id="@Model.TreatmentFacility.Id" asp-page="AddReservation"><i class="fa fa-plus"></i>Add Reservation</a>
+@if (Model.TreatmentFacility.Patient.Count < Model.TreatmentFacility.MaxLimit)
+{
+    @section actionbar{
+        <a class="btn btn-sm btn-outline-secondary " asp-route-id="@Model.TreatmentFacility.Id" asp-page="AddReservation"><i class="fa fa-plus"></i>Add Reservation</a>
+    }
 }
-
+else
+{
+    @section actionbar{
+    }
+}
 
 @using Humanizer
 
@@ -46,6 +53,8 @@
                         <p class="text-muted user">@Model.TreatmentFacility.Email</p>
                         <p class="user">@Model.TreatmentFacility.Address</p>
                         <p class="user">@Model.TreatmentFacility.PhoneNumber</p>
+                        <p class="user">@Model.TreatmentFacility.MaxLimit</p>
+
 
                     </div>
 
@@ -80,12 +89,12 @@
         <div class="card-body">
             <div class="">
                 <div class="collapseHeading" id="headingTwo">
-                    <h5 class="collapsed" 
-                        data-bs-toggle="collapse" 
-                        data-bs-target="#collapseTwo" 
-                        aria-expanded="false" 
+                    <h5 class="collapsed"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo"
+                        aria-expanded="false"
                         aria-controls="collapseTwo">
-                        Patient@(Model.TreatmentFacility.Patient.Count == 1 ? " " : "s") <button class="rotate buttondetails ms-auto" ><i class="fa fa-angle-down" aria-hidden="true"></i></button>
+                        Patient@(Model.TreatmentFacility.Patient.Count == 1 ? " " : "s") <button class="rotate buttondetails ms-auto"><i class="fa fa-angle-down" aria-hidden="true"></i></button>
                     </h5>
                 </div>
 
@@ -109,14 +118,14 @@
                                 <tr>
 
                                     @*<td>
-                               <div>
-                            <div style="width: 45px; height: 45px; padding-top:10px !important" class="font-weight-bold text-center float-left mr-2 p-2 border border-dark rounded-circle bg-light">@($"{item.FirstName} {item.Surname}".Initials())</div>
-                            <div>
+                                                   <div>
+                                                <div style="width: 45px; height: 45px; padding-top:10px !important" class="font-weight-bold text-center float-left mr-2 p-2 border border-dark rounded-circle bg-light">@($"{item.FirstName} {item.Surname}".Initials())</div>
+                                                <div>
 
-                            </div>
-                        </div>
+                                                </div>
+                                            </div>
 
-                    </td>*@
+                                        </td>*@
                                     <td> <a asp-page="./Details" asp-route-id="@item.Id" class="p-3"> @item.FirstName</a></td>
                                     <td> @item.Surname</td>
                                     <td> @item.Age</td>

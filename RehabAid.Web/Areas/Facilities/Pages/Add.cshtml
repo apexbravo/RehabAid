@@ -24,7 +24,7 @@
 
                     <div class="form-group">
                         <label>Email <span class="text-danger">*</span></label>
-                        <input class="form-control" type="email"  asp-for="TreatmentFacility.Email">
+                        <input class="form-control" type="email" asp-for="TreatmentFacility.Email">
                     </div>
 
                     <div class="form-group">
@@ -53,13 +53,16 @@
                     </div>
 
 
+                    <div class="form-group">
+                        <label>Capacity</label>
+                        <input class="form-control" type="text" asp-for="TreatmentFacility.MaxLimit">
+                    </div>
 
 
 
-                   
                     <div class=" form-group row">
                         <label class="col-sm-4">Profile Picture</label>
-                        <input  class="form-control" asp-for="logo" type="file" accept="*" />
+                        <input class="form-control" asp-for="logo" type="file" accept="*" />
                     </div>
                 </div>
             </div>
