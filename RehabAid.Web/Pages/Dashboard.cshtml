@@ -3,9 +3,9 @@
 @{
 }
 
-@if (User.IsGuardians())
+@if (User.IsStaff())
 {
-    <partial name="UserLayouts/__Guardians" />
+    <partial name="UserLayouts/__Staff" />
 }
 
 else if (User.IsSpecialist())
@@ -13,9 +13,10 @@ else if (User.IsSpecialist())
     <partial name="UserLayouts/__Specialist" />
 }
 
-else if (User.IsStaff())
+else if (User.IsGuardians())
 {
-    <partial name="UserLayouts/__Staff" />
+    <partial name="UserLayouts/__Guardians" />
+
 }
 
 else

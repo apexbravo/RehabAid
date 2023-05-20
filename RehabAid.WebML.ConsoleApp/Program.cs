@@ -12,8 +12,8 @@ namespace RehabAid_WebML.ConsoleApp
             // Create single instance of sample data from first line of dataset for model input
             ModelInput sampleData = new ModelInput()
             {
-                Expert_review = @" I`d have responded, if I were going",
-                Selected_text = @"id have responded if i were going",
+                Expert_review = @"The patient performed badly .",
+                Selected_text = @"The patient performed badly .",
                 Time_of_session = @"morning",
                 Age_of_Patient = @"0-20",
             };

@@ -52,6 +52,8 @@ namespace RehabAid.Web.Areas.Facilities.Pages.Specialists.Review
             {
                 Selected_text = SpecialistReview.Review,
                 Time_of_session = time.ToString(),
+                Expert_review = SpecialistReview.Review,
+                Age_of_Patient = @"0-20",
             };
 
             // Load model and predict output of sample data

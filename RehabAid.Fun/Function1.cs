@@ -36,7 +36,7 @@ namespace RehabAid.Fun
             }
 
             // Configure SendGrid client
-            
+             
             var client = new SendGridClient("");
 
             // Compose email message

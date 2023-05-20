@@ -104,10 +104,9 @@ else
 
     @if (Model.TreatmentFacility.Patient.Count < Model.TreatmentFacility.MaxLimit)
     {
-        if (!User.Identity.IsAuthenticated)
-        {
+
             <a class="btn btn-lg btn-outline-secondary " asp-route-id="@Model.TreatmentFacility.Id" asp-page="AddReservation"><i class="fa fa-plus"></i> Add Reservation</a>
-        }
+        
     }
 
 

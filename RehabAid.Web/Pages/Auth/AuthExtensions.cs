@@ -84,8 +84,7 @@ namespace RehabAid.Web.Pages.Auth
         public static UserType GetUserType(this ClaimsPrincipal principal)
             => (UserType)int.Parse(principal.FindFirst(ClaimsHelper.UserTypeClaim)?.Value ?? "0");
 
-        public static UserType GetUserType(this ClaimsIdentity identity)
-            => (UserType)int.Parse(identity.FindFirst(ClaimsHelper.UserTypeClaim)?.Value ?? "0");
+
 
     
 

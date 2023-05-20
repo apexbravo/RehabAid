@@ -23,8 +23,16 @@ namespace RehabAid.Web.Pages
         public IActionResult OnGet()
         {
 
-            if(User.IsGuardians())
+            if(  User.IsStaff())
             {
+                Staff = Db.Staff
+
+           .FirstOrDefault(c => c.Id == CurrentUser.StaffId);
+                userportalId = Staff.Id;
+            }
+            else if(User.IsGuardians())
+            {
+
                 Guardian = Db.Guardians
                .Include(c => c.Facility)
                .Include(c => c.Patient)
@@ -32,20 +40,16 @@ namespace RehabAid.Web.Pages
                 userportalId = Guardian.Id;
 
                 return RedirectToPage("./Patients/Details", new { area = "Facilities", id = Guardian.PatientId });
+    
             }
             else if(User.IsSpecialist())
             {
+
                 Specialist = Db.Specialist
 
-                .FirstOrDefault(c => c.Id == CurrentUser.SpecialistId);
+    .FirstOrDefault(c => c.Id == CurrentUser.SpecialistId);
                 userportalId = Specialist.Id;
-            }
-            else if(User.IsStaff())
-            {
-                Staff = Db.Staff
-
-               .FirstOrDefault(c => c.Id == CurrentUser.StaffId);
-                userportalId = Staff.Id;
+         
 
             }
 
