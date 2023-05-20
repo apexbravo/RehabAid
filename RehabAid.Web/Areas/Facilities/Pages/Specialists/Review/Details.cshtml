@@ -1,12 +1,17 @@
 ﻿@page
 @model RehabAid.Web.Areas.Facilities.Pages.Specialists.Review.DetailsModel
-@{
-}
-@section breadcrumb{
-    <a class="breadcrumb-item" asp-page="/Index">Specialists</a>
-    <a class="breadcrumb-item" asp-page="./Index">Reviews</a>
-    <a class="breadcrumb-item active">Details</a>
-}
+
+ <p>Welcome, @User.Identity.Name!</p>
+    @section breadcrumb{
+        <a class="breadcrumb-item" asp-page="/Index">Specialists</a>
+        <a class="breadcrumb-item" asp-page="./Index">Reviews</a>
+        <a class="breadcrumb-item active">Details</a>
+    }
+
+
+
+
+
 
 <div class="mt-4">
     <div>
@@ -22,8 +27,20 @@
                                 <p class="form-control-static" id="review">@Model.Review.Review</p>
                             </div>
                             <div class="form-group">
-                                <label for="sentiment">Sentiment</label>
-                                <span class="badge bg-info">@Model.Review.Sentiment</span>
+
+                                @if (Model.Review.Sentiment == SentimentType.negatively)
+                                {
+                                    <span class="badge bg-danger">The patient is progressing @Model.Review.Sentiment</span>
+                                }
+                                else if (Model.Review.Sentiment == SentimentType.positively)
+                                {
+                                    <span class="badge bg-success">The patient is progressing @Model.Review.Sentiment</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-info">The patient is progressing @Model.Review.Sentiment</span>
+                                }
+
                             </div>
                         </div>
                     </div>

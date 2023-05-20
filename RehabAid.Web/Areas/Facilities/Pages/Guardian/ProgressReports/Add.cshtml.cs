@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using RehabAid.Data;
 using RehabAid.Web.Pages;
 
@@ -13,7 +14,8 @@ namespace RehabAid.Web.Areas.Facilities.Pages.Guardian.ProgressReports
     public class AddModel : SysPageModel
     {
 
-
+   
+        public SelectList patients { get; set; }
         [BindProperty]
 
         public ProgressReport ProgressReport { get; set; }
@@ -32,17 +34,22 @@ namespace RehabAid.Web.Areas.Facilities.Pages.Guardian.ProgressReports
             //                    Value = ((int)ft).ToString(),
             //                    Text = ft.ToString()
             //                }), "Value", "Text");
+            patients = new SelectList(Db.Patient, nameof(Patient.Id), nameof(Patient.Fullname));
         }
 
         public async Task<IActionResult> OnPost(Guid id, Guid GuardianId, Guid MedicineLogId)
         {
+            var Guardian = Db.Guardians.Include(c => c.Patient)
+                .FirstOrDefault(c => c.PatientId == ProgressReport.PatientId);
+            var Medicine = Db.MedicineLog.FirstOrDefault(c => c.PatientId == ProgressReport.PatientId);
+
             //SentimentType sentiment;
             ProgressReport.Id = Guid.NewGuid();
             ProgressReport.CreateDate = DateTime.Now;
             ProgressReport.CreatorId = CurrentUserId;
-            ProgressReport.PatientId = id;
-            ProgressReport.GuardianId = GuardianId;
-            ProgressReport.MedicineLogId = MedicineLogId;
+            ProgressReport.MedicineLogId = Medicine.Id;
+            ProgressReport.GuardianId = Guardian.Id;
+     
 
 
             //TimeOfSessionEnum time = SpecialistReview.TimeOfSession;

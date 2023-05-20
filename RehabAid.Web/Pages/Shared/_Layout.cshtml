@@ -29,7 +29,7 @@
         {
             @if (User.IsStaff())
             {
-                <partial name = "Sidebar/__Staff" />
+                <partial name="Sidebar/__Staff" />
 
 
 
@@ -78,13 +78,6 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                     <form class="d-flex ms-auto">
-                        <div class="input-group">
-                            <input class="form-control" type="search" placeholder="Search">
-                            <button class="btn btn-outline-primary" type="submit">
-                                <i class="fa fa-search"
-                                   aria-hidden="true"></i>
-                            </button>
-                        </div>
                     </form>
                     <div class="action">
                         <div class="profile" onclick="menuToggle();">
@@ -115,19 +108,34 @@
     </header>
     <div class="container-1 p-3">
         <main role="main" class="content">
-            <div class="d-flex py-2">
-                <div class="flex-grow-1"><div class="breadcrumb small d-print-none" style="background: none !important">@RenderSection("breadcrumb", false)</div></div>
-                @if (IsSectionDefined("actionbar"))
+ 
+       
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex align-items-center py-2">
+                        <div class="flex-grow-1 breadcrumb small d-print-none" style="background: none !important">
+                            @RenderSection("breadcrumb", false)
+                        </div>
+                        @if (IsSectionDefined("actionbar"))
+                        {
+                            <div class="px-3 m-2" style="">
+                                @RenderSection("actionbar", required: false)
+                            </div>
+                        }
+                    </div>
+                    @if (ViewBag.PageTitle != null)
+                    {
+                        <h3 class="mb-3 fs-titlepage">@ViewBag.PageTitle</h3>
+                    }
+                    @RenderBody()
+                </div>
+                @if (IsSectionDefined("sidebar"))
                 {
-                    <div class="px-3 m-2" style="">@RenderSection("actionbar", required: false)</div>
+                    <div class="col-3 border-light px-0 sidebg border-left pr-1" style="min-height: 100vh;">
+                        @RenderSection("sidebar", false)
+                    </div>
                 }
-
             </div>
-            @if (ViewBag.PageTitle != null)
-            {
-                <h3 class="mb-3 fs-titlepage">@ViewBag.PageTitle</h3>
-            }
-            @RenderBody()
         </main>
     </div>
 
@@ -145,7 +153,7 @@
         $(document).ready(() => {
             $(".rotate, .buttondetails").click(function () {
                 $(this).toggleClass("down");
-           
+
             });
 
             $('.moreless-button').click(function () {
@@ -159,6 +167,12 @@
         }
         );
 
+    </script>
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
     </script>
     @RenderSection("Scripts", required: false)
 </body>

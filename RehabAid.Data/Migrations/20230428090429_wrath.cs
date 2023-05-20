@@ -6,17 +6,17 @@ namespace RehabAid.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            //migrationBuilder.AddColumn<int>(
-            //    name: "MaxLimit",
-            //    table: "TreatmentFacility",
-            //    nullable: true);
+            migrationBuilder.AddColumn<int>(
+                name: "MaxLimit",
+                table: "TreatmentFacility",
+                nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "MaxLimit",
-                table: "TreatmentFacility");
+            //migrationBuilder.DropColumn(
+            //    name: "MaxLimit",
+            //    table: "TreatmentFacility");
         }
     }
 }

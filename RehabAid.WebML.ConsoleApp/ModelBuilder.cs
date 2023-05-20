@@ -12,7 +12,7 @@ namespace RehabAid_WebML.ConsoleApp
 {
     public static class ModelBuilder
     {
-        private static string TRAIN_DATA_FILEPATH = @"C:\Users\apexb\Downloads\Compressed\sentiment\train.csv";
+        private static string TRAIN_DATA_FILEPATH = @"C:\Users\apexb\Desktop\modified_data.csv";
         private static string MODEL_FILEPATH = @"C:\Users\apexb\AppData\Local\Temp\MLVSTools\RehabAid.WebML\RehabAid.WebML.Model\MLModel.zip";
         // Create MLContext to be shared across the model creation workflow objects 
         // Set a random seed for repeatable/deterministic results across multiple trainings.
@@ -45,13 +45,13 @@ namespace RehabAid_WebML.ConsoleApp
         {
             // Data process configuration with pipeline data transformations 
             var dataProcessPipeline = mlContext.Transforms.Conversion.MapValueToKey("sentiment", "sentiment")
-                                      .Append(mlContext.Transforms.Categorical.OneHotEncoding(new[] { new InputOutputColumnPair("Time_of_session", "Time_of_session") }))
+                                      .Append(mlContext.Transforms.Categorical.OneHotEncoding(new[] { new InputOutputColumnPair("Time_of_session", "Time_of_session"), new InputOutputColumnPair("Age_of_Patient", "Age_of_Patient") }))
+                                      .Append(mlContext.Transforms.Text.FeaturizeText("expert_review_tf", "expert_review"))
                                       .Append(mlContext.Transforms.Text.FeaturizeText("selected_text_tf", "selected_text"))
-                                      .Append(mlContext.Transforms.Concatenate("Features", new[] { "Time_of_session", "selected_text_tf" }))
-                                      .Append(mlContext.Transforms.NormalizeMinMax("Features", "Features"))
+                                      .Append(mlContext.Transforms.Concatenate("Features", new[] { "Time_of_session", "Age_of_Patient", "expert_review_tf", "selected_text_tf" }))
                                       .AppendCacheCheckpoint(mlContext);
             // Set the training algorithm 
-            var trainer = mlContext.MulticlassClassification.Trainers.OneVersusAll(mlContext.BinaryClassification.Trainers.LbfgsLogisticRegression(labelColumnName: "sentiment", featureColumnName: "Features"), labelColumnName: "sentiment")
+            var trainer = mlContext.MulticlassClassification.Trainers.OneVersusAll(mlContext.BinaryClassification.Trainers.FastTree(labelColumnName: "sentiment", featureColumnName: "Features"), labelColumnName: "sentiment")
                                       .Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel", "PredictedLabel"));
 
             var trainingPipeline = dataProcessPipeline.Append(trainer);

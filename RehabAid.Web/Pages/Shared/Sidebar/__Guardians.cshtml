@@ -6,7 +6,7 @@
     <ul class="side-list">
 
         <li><i class="fa fa-newspaper-o"></i><span class="d-none d-sm-inline">&nbsp;Dashboard</span></li>
-        <li><i class="fa fa-files-o"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/Guardian/ProgressReports/Index">Progress Reports</a></span></li>
+        <li><i class="fa fa-files-o"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/Guardian/ProgressReports/Index" asp-route-id="@User.GetPortalId()">Progress Reports</a></span></li>
 
         @*<li><i class="fa fa-user-md"></i><span class="d-none d-sm-inline">&nbsp;<a asp-area="Facilities" asp-page="/MedicineLogs/Index">Medicine</a></span></li>*@
 

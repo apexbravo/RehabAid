@@ -3,7 +3,7 @@
 @{
 }
 @section breadcrumb{
-    <a class="breadcrumb-item" asp-page="/Index">Progress Reports</a>
+    <a class="breadcrumb-item" asp-page="./Index">Progress Reports</a>
     <a class="breadcrumb-item" asp-page=".">Add</a>
 }
 <form method="post" enctype="multipart/form-data">
@@ -15,7 +15,7 @@
 
                     <div class="form-group">
                         <label>Patient Name <span class="text-danger">*</span></label>
-                        <input class="form-control" type="text" asp-for="Patient.Fullname">
+                        <select id="exchangecurrency" class="form-control" asp-for="ProgressReport.PatientId" asp-items="@Model.patients" required="required"></select>
                     </div>
                     @*<div class="form-group">
             <label>Surname <span class="text-danger">*</span></label>

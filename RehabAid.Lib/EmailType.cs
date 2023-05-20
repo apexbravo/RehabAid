@@ -4,10 +4,10 @@ using System.Text;
 
 namespace RehabAid.Lib
 {
-   public enum SentimentType : int
+    public enum  EmailType : int
     {
-        negatively = 1,
-        positively = 2,
-        fairly = 3,
+        Accept = 1,
+        Reject = 2,
+        Acknow = 3,
     }
 }

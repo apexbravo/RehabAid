@@ -40,6 +40,111 @@
         </div>
     </div>
 
+    <canvas id="progressGraphContainer"></canvas>
+    @section scripts {
+        <!-- Include the graphing library -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <!-- Generate the graph using the retrieved therapist reviews -->
+        <script>
+        $(document).ready(function () {
+            var therapistReviews = @Html.Raw(Model.TherapistReviewsJson);
+
+
+            var sentimentLabels = therapistReviews.map(review => {
+                switch (review.sentimentId) {
+                    case 1:
+                        return 'Negative';
+                    case 2:
+                        return 'Neutral';
+                    case 3:
+                        return 'Positive';
+                    default:
+                        return '';
+                }
+            });
+
+            var sentimentColors = therapistReviews.map(review => {
+                switch (review.sentimentId) {
+                    case 1:
+                        return '#FFB0B0';
+                    case 2:
+                        return '#B0B0FF';
+                    case 3:
+                        return '#B0FFB0';
+                    default:
+                        return '';
+                }
+            });
+
+            var creationDates = therapistReviews.map(review => new Date(review.creationDate).toLocaleDateString('en-GB'));
+            var sentimentScores = therapistReviews.map(review => review.sentimentId);
+
+            var ctx = document.getElementById('progressGraphContainer').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: creationDates,
+                    datasets: [{
+                        label: 'Sentiment Score',
+                        data: sentimentScores,
+                        backgroundColor: 'rgba(0, 0, 0, 0.1)', // Set background color for the shaded area
+                        borderColor: sentimentColors, // Use sentimentColors array for border colors
+                        borderWidth: 2,
+                        pointBackgroundColor: sentimentColors, // Use sentimentColors array for point colors
+                        pointRadius: 5,
+                        fill: true, // Enable filling the area beneath the line
+                        tension: 0.4 // Set the tension to make the line curvy (adjust the value as desired)
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Date'
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Sentiment Level'
+                            },
+                            ticks: {
+                                min: 1, // Set the minimum value of the y-axis
+                                max: 3, // Set the maximum value of the y-axis
+                                stepSize: 1, // Set the step size between ticks
+                                callback: function (value, index, values) {
+                                    switch (value) {
+                                        case 1:
+                                            return 'Negative';
+                                        case 2:
+                                            return 'Neutral';
+                                        case 3:
+                                            return 'Positive';
+                                        default:
+                                            return '';
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top' // Position the legend at the top of the chart
+                        }
+                    }
+                }
+            });
+            });
+       
+        </script>
+    }
+
+
 </div>
 
 

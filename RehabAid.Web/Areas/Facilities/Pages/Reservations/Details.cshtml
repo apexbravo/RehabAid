@@ -7,35 +7,146 @@
     <a class="breadcrumb-item" asp-page=".">Details</a>
 }
 @using Humanizer
-<div class="col-md-7 col-ldg-8">
+<div class="">
     <div class="card shadow">
         <div class="card-body">
+            <div class="col-sm-12 text-end p-2">
+                @if (Model.Reservation.Status == (int)RehabAid.Lib.Status.Accepted)
+                {
+                    <h4 class="badgeprofile bg-success d-inline">@RehabAid.Lib.Status.Accepted</h4>
+                }
+                else if (Model.Reservation.Status == (int)RehabAid.Lib.Status.Pending)
+                {
+
+                    <h4 class="badgeprofile bg-secondary d-inline">@RehabAid.Lib.Status.Pending</h4>
+                }
+                else
+                {
+                    <h4 class="badgeprofile bg-danger d-inline ">@RehabAid.Lib.Status.Rejected</h4>
+                }
 
 
-            <div class="form-group row">
-                <label class="col-md-3 text-muted">Name</label>
-                <div class="col-md-9"><div class="label-value">@Model.Reservation.Name</div></div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 text-muted">Phone Number</label>
-                <div class="col-md-9"><div class="label-value">@Model.Reservation.PhoneNumber</div></div>
-            </div>
-            
-            <div class="form-group row">
-                <label class="col-md-3 text-muted">Email</label>
-                <div class="col-md-9"><div class="label-value">@Model.Reservation.Email</div></div>
-            </div>
 
 
-            <div class="form-group row">
-                <label class="col-md-3 text-muted">Description</label>
-                <div class="col-md-9"><div class="label-value">@Model.Reservation.Description</div></div>
+
             </div>
-            @*<div class="form-group row">
-                    <label class="col-md-3 text-muted">Specialty</label>
-                    <div class="col-md-9"><div class="label-value">@Model.Specialist.Specialty.Humanize(Humanizer.LetterCasing.Sentence)</div></div>
-                </div>*@
+
+            <div class="form-group row">
+                <label class="col-md-3 text-muted">Name:</label>
+                <div class="col-md-9">
+                    <div class="label-value">@Model.Reservation.Name</div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 text-muted">Phone Number:</label>
+                <div class="col-md-9">
+                    <div class="label-value">@Model.Reservation.PhoneNumber</div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 text-muted">Email:</label>
+                <div class="col-md-9">
+                    <div class="label-value">@Model.Reservation.Email</div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 text-muted">Description:</label>
+                <div class="col-md-9">
+                    <div class="label-value">@Model.Reservation.Description</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section sidebar{
+
+    @if (Model.Reservation.Status == (int)Status.Accepted || Model.Reservation.Status == (int)Status.Rejected)
+    {
+        <div class="list-group list-group-flush border-bottom scrollarea">
+
+
+            <a id="approveLink" onclick="showApprovalNotification()" class="list-group-item list-group-item-light justify-content-between d-flex align-items-center list-group-item-action" asp-page-handler="Approve" asp-route-id="@Model.Reservation.Id">
+                <div>Approve</div>
+                <i class="fa fa-check" aria-hidden="true"></i>
+            </a>
+
+
+
+            <a id="denyLink" onclick="showDenyNotification()" class="list-group-item list-group-item-light justify-content-between d-flex align-items-center list-group-item-action" asp-page-handler="Deny" asp-route-id="@Model.Reservation.Id">
+                <div>Deny</div>
+                <i class="fa fa-times" aria-hidden="true"></i>
+
+            </a>
+
 
 
         </div>
-    </div>
+    }
+
+}
+
+
+@section scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+    <script>
+        function showApprovalNotification() {
+            Swal.fire({
+                title: 'Email Sent',
+                text: 'The email has been sent to the Client.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        }
+
+        function showDenyNotification() {
+            Swal.fire({
+                title: 'Email Sent',
+                text: 'The email has been sent to the Client.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        }
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#approveLink").click(function (e) {
+
+
+                // Make an AJAX request to the server-side handler method
+                $.ajax({
+                    url: "@Url.Page("Details", new { id = Model.Reservation.Id, handler = "Approve" })",
+                    method: "GET",
+                    success: function (response) {
+                        // Handle the success response, e.g., show a success message
+                        console.log("Reservation approved successfully!");
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle the error response, e.g., show an error message
+                        console.error("An error occurred while approving the reservation.");
+                    }
+                });
+            });
+
+            $("#denyLink").click(function (e) {
+
+
+                // Make an AJAX request to the server-side handler method
+                $.ajax({
+                    url: "@Url.Page("Details", new { id = Model.Reservation.Id, handler = "Deny" })",
+                    method: "GET",
+                    success: function (response) {
+                        // Handle the success response, e.g., show a success message
+                        console.log("Reservation denied successfully!");
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle the error response, e.g., show an error message
+                        console.error("An error occurred while approving the reservation.");
+                    }
+                });
+            });
+        });
+    </script>
+}

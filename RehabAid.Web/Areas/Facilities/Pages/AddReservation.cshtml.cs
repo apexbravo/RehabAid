@@ -20,6 +20,7 @@ namespace RehabAid.Web.Areas.Facilities.Pages
     {
         [BindProperty]
         public Reservation Reservation { get; set; }
+        public TreatmentFacility Facility { get; set; }
         [BindProperty]
 
         public string name { get; set; }
@@ -27,9 +28,9 @@ namespace RehabAid.Web.Areas.Facilities.Pages
         public void OnGet(Guid id)
         {
             
-            TreatmentFacility treatmentFacility = Db.TreatmentFacility.FirstOrDefault(c => c.Id == id);
-           name = treatmentFacility.Name;
-            Title = PageTitle = "Add new Reservation for " + treatmentFacility.Name;
+            Facility = Db.TreatmentFacility.FirstOrDefault(c => c.Id == id);
+           name = Facility.Name;
+            Title = PageTitle = "Add new Reservation for " + Facility.Name;
 
 
         }
@@ -39,24 +40,29 @@ namespace RehabAid.Web.Areas.Facilities.Pages
 
             Reservation.Id = Guid.NewGuid();
             Reservation.FacilityId = id;
-      
+
+            Facility = Db.TreatmentFacility.FirstOrDefault(c => c.Id == id);
             Reservation.CreationDate = DateTime.UtcNow;
             Reservation.Status = (int)Status.Pending;
 
-            //using (var httpClient = new HttpClient())
-            //{
-            //    var functionUrl = "http://localhost:7071/api/SendEmail";
-            //    var requestBody = new
-            //    {
-            //        Email = Reservation.Email,
-                  
-            //    };
-            //    var json = JsonConvert.SerializeObject(requestBody);
-            //    var content = new StringContent(json, Encoding.UTF8, "application/json");
-            //    var response = await httpClient.PostAsync(functionUrl, content);
+            using (var httpClient = new HttpClient())
+            {
+                var functionUrl = "http://localhost:7071/api/SendEmail";
+                var requestBody = new
+                {
+                    Email = Reservation.Email,
+                    Facility = Facility.Name,
+                    MessageType = (int)EmailType.Acknow,
+                    
+                   
+
+                };
+                var json = JsonConvert.SerializeObject(requestBody);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await httpClient.PostAsync(functionUrl, content);
 
 
-            //}
+            }
 
             await Db.Reservation.AddAsync(Reservation);
             await Db.SaveChangesAsync();

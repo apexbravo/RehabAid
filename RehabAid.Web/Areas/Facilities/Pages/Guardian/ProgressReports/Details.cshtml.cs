@@ -19,6 +19,7 @@ namespace RehabAid.Web.Areas.Facilities.Pages.Guardian.ProgressReports
             TherapyReview = Db.ProgressReport
                 .Include(c => c.Patient)
                 .Include(c => c.Guardian)
+                .Include(c => c.MedicineLog)
                 .FirstOrDefault(c => c.Id == id);
 
 

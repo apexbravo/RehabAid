@@ -39,7 +39,7 @@ namespace RehabAid.Web.Areas.Facilities.Pages.Specialists.Review
 
         public async Task<IActionResult> OnPost(Guid id, Guid specialistId)
         {
-            SentimentType sentiment;
+            SentimentType sentiment = 0;
             SpecialistReview.Id = Guid.NewGuid();
             SpecialistReview.CreationDate = DateTime.Now;
             SpecialistReview.CreatorId = CurrentUserId;
@@ -56,15 +56,23 @@ namespace RehabAid.Web.Areas.Facilities.Pages.Specialists.Review
 
             // Load model and predict output of sample data
             ModelOutput result = ConsumeModel.Predict(input);
-            bool success = Enum.TryParse(result.Prediction, true, out sentiment);
-            if (success)
-            {
-                SpecialistReview.SentimentId= (int)sentiment;
-            }
-            else
-            {
-                // handle the case where the string value doesn't match any enum value
-            }
+switch (result.Prediction)
+{
+    case "positive":
+        sentiment = SentimentType.positively;
+        break;
+    case "negative":
+        sentiment = SentimentType.negatively;
+        break;
+    case "neutral":
+        sentiment = SentimentType.fairly;
+        break;
+    default:
+        // handle the case where the sentiment value doesn't match any enum value
+        break;
+}
+
+SpecialistReview.SentimentId = (int)sentiment;
             
 
             await Db.SpecialistReview.AddAsync(SpecialistReview);

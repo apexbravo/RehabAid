@@ -12,16 +12,20 @@ namespace RehabAid_WebML.ConsoleApp
             // Create single instance of sample data from first line of dataset for model input
             ModelInput sampleData = new ModelInput()
             {
-                Selected_text = @"I`d have responded, if I were going",
+                Expert_review = @" I`d have responded, if I were going",
+                Selected_text = @"id have responded if i were going",
                 Time_of_session = @"morning",
+                Age_of_Patient = @"0-20",
             };
 
             // Make a single prediction on the sample data and print results
             var predictionResult = ConsumeModel.Predict(sampleData);
 
             Console.WriteLine("Using model to make single prediction -- Comparing actual Sentiment with predicted Sentiment from sample data...\n\n");
+            Console.WriteLine($"Expert_review: {sampleData.Expert_review}");
             Console.WriteLine($"Selected_text: {sampleData.Selected_text}");
             Console.WriteLine($"Time_of_session: {sampleData.Time_of_session}");
+            Console.WriteLine($"Age_of_Patient: {sampleData.Age_of_Patient}");
             Console.WriteLine($"\n\nPredicted Sentiment value {predictionResult.Prediction} \nPredicted Sentiment scores: [{String.Join(",", predictionResult.Score)}]\n\n");
             Console.WriteLine("=============== End of process, hit any key to finish ===============");
             Console.ReadKey();

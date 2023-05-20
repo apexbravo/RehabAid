@@ -13,7 +13,7 @@
 </head>
 <body id="admin-home">
     <header>
- 
+
         <nav class="navbar navbar-expand-md navbar-light fixed-top shadow-sm mb-3">
             <div id="branding" class="ms-3">
                 <h1><span class="highlight">Rehab</span>Aid</h1>
@@ -25,7 +25,7 @@
                     </li>
                     <li class="nav-item">
 
-                        <a class="nav-link text-white"  asp-page="./about">About us</a>
+                        <a class="nav-link text-white" asp-page="./about">About us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Login">Login <i class="fa fa-sign-in" aria-hidden="true"></i></a>
@@ -35,10 +35,12 @@
             </div>
         </nav>
     </header>
-    <div role="main">
+    <div role="main" class="">
+
+
         @RenderBody()
     </div>
-  
+
 
 
     <footer class="border-top footer text-muted">
@@ -50,6 +52,11 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
     @RenderSection("Scripts", required: false)
 </body>

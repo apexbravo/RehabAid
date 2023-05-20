@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RehabAid.Data;
 using RehabAid.Web.Pages;
+using RehabAid.Web.Pages.Auth;
 using X.PagedList;
 
 namespace RehabAid.Web.Areas.Facilities.Pages.Guardian.ProgressReports
@@ -15,11 +16,24 @@ namespace RehabAid.Web.Areas.Facilities.Pages.Guardian.ProgressReports
     {
         public void OnGet(int? p, int? ps, string q)
         {
-            var query = Db.ProgressReport
-                .Include(c => c.Guardian)
-                .Include(c => c.Patient)
-                .Include(c => c.MedicineLog)
-                .AsQueryable();
+            IQueryable<ProgressReport> query;
+            if(User.IsGuardians())
+            {
+                query = Db.ProgressReport
+          .Include(c => c.Guardian)
+          .Include(c => c.Patient)
+          .Include(c => c.MedicineLog)
+          .AsQueryable().Where(c => c.GuardianId.ToString() == User.GetPortalId());
+            }
+            else
+            {
+                query = Db.ProgressReport
+          .Include(c => c.Guardian)
+          .Include(c => c.Patient)
+          .Include(c => c.MedicineLog)
+          .AsQueryable();
+            }
+       
 
 
 

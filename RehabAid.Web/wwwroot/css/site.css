@@ -463,7 +463,7 @@ footer {
 
 .container-1 .content {
     position: relative;
-    margin-top: 15vh;
+    margin-top: 7vh;
     min-height: 90vh;
     margin-left: 20vw;
 }
@@ -723,7 +723,7 @@ tr {
     border-bottom: rgba(6, 15, 129, 0.849) 3px solid;
 }
 .profile-header {
-    background-color: #4f6388;
+    background-image: url('/images/Rectangle.svg');
     height: 150px;
 }
 
@@ -837,3 +837,15 @@ tr {
         -webkit-transform: rotate(180deg);
         transform: rotate(180deg);
     }
+.container-fac {
+    margin: 90px 15px 15px 15px;
+}
+.label-value {
+    background-color: #dae7f2;
+    padding: 0 5px;
+    border-radius: 2px;
+}
+
+.sidebg {
+    background-color: #b5c2ce8a;
+}
