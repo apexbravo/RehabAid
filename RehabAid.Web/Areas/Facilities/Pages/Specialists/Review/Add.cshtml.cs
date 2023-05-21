@@ -59,7 +59,7 @@ namespace RehabAid.Web.Areas.Facilities.Pages.Specialists.Review
             // Load model and predict output of sample data
             ModelOutput result = ConsumeModel.Predict(input);
 switch (result.Prediction)
-{
+{ 
     case "positive":
         sentiment = SentimentType.positively;
         break;
