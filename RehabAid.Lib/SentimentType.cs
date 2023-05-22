@@ -7,7 +7,7 @@ namespace RehabAid.Lib
    public enum SentimentType : int
     {
         negatively = 1,
-        positively = 2,
-        fairly = 3,
+        positively = 3,
+        fairly = 2,
     }
 }
