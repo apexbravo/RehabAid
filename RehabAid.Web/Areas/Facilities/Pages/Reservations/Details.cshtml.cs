@@ -67,7 +67,7 @@ namespace RehabAid.Web.Areas.Facilities.Pages.Reservations
             var Facility = Db.TreatmentFacility.FirstOrDefault(c => c.Id == Reservation.FacilityId);
 
             var sfd = id;
-            Reservation.Status = (int)Status.Pending;
+            Reservation.Status = (int)Status.Rejected;
             Db.SaveChanges();
             using (var httpClient = new HttpClient())
             {
