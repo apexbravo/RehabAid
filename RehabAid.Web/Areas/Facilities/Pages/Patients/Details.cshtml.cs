@@ -18,6 +18,8 @@ namespace RehabAid.Web.Areas.Facilities.Pages.Patients
         public List<SpecialistReview> TherapistReviews { get; set; }
         private readonly JsonSerializerOptions _jsonOptions;
         public Patient Patient { get; set; }
+
+
         public string TherapistReviewsJson { get; set; }
         public Index1Model()
         {
@@ -35,6 +37,8 @@ namespace RehabAid.Web.Areas.Facilities.Pages.Patients
 
             Patient = Db.Patient
                 .Include(c => c.Facility)
+                .Include(c => c.SpecialistReview).ThenInclude(c => c.Specialist)
+                .Include(c => c.ProgressReport).ThenInclude(c => c.MedicineLog)
                 .FirstOrDefault(c => c.Id == id);
             var therapistReviews = await Db.SpecialistReview
           .Where(review => review.PatientId == id)

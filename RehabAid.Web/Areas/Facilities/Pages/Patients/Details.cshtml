@@ -39,8 +39,120 @@
             </div>
         </div>
     </div>
+    <br />
 
     <canvas id="progressGraphContainer"></canvas>
+
+    <br />
+
+    @if (Model.Patient.ProgressReport.Count != 0)
+    {
+        <div class="card">
+            <div class="card-body">
+                <div class="">
+                    <div class="collapseHeading" id="headingTwo">
+                        <h5 class="collapsed"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo"
+                            aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Progress Report@(Model.Patient.ProgressReport.Count == 1 ? " " : "s") <button class="rotate buttondetails ms-auto"><i class="fa fa-angle-down" aria-hidden="true"></i></button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <br />
+                        <table class="table table-striped table-hover table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Patient</th>
+                                    <th scope="col">Creation Date</th>
+                                    <th scope="col">Prescription</th>
+                                    <th scope="col">Therapy Review</th>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Patient.ProgressReport)
+                                {
+                                    <tr>
+                                        @*<td>
+                                                <a asp-page="./Details" asp-route-id="@item.Id">@item.Specialist.Fullname</a>
+                                            </td>*@
+                                        <td><a asp-page="./Details" asp-route-id="@item.Id">@item.Patient.Fullname</a></td>
+                                        <td>@item.CreateDate</td>
+                                        <td>@item.MedicineLog.Name</td>
+                                        <td>@item.TherapyReview</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+
+                            </tfoot>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <br />
+
+    @if (Model.Patient.ProgressReport.Count != 0)
+    {
+        <div class="card">
+            <div class="card-body">
+                <div class="">
+                    <div class="collapseHeading" id="headingTwo">
+                        <h5 class="collapsed"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo"
+                            aria-expanded="false"
+                            aria-controls="collapseTwo">
+                            Review@(Model.Patient.SpecialistReview.Count == 1 ? " " : "s") <button class="rotate buttondetails ms-auto"><i class="fa fa-angle-down" aria-hidden="true"></i></button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <br />
+                        <table class="table table-striped table-hover table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Specialist</th>
+                                    <th scope="col">Patient</th>
+                                    <th scope="col">Creation Date</th>
+                                    <th scope="col">Overall Sentiment</th>
+
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Patient.SpecialistReview)
+                                {
+                                    <tr>
+                                        <td>
+                                            <a asp-page="./Details" asp-route-id="@item.Id">@item.Specialist.Fullname</a>
+                                        </td>
+                                        <td>@item.Patient.Fullname</td>
+                                        <td>@item.CreationDate</td>
+                                        <td>@item.Sentiment</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+
+                            </tfoot>
+                            </table>
+</div>
+                </div>
+            </div>
+        </div>
+    }
+
     @section scripts {
         <!-- Include the graphing library -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -140,7 +252,7 @@
                 }
             });
             });
-       
+
         </script>
     }
 
